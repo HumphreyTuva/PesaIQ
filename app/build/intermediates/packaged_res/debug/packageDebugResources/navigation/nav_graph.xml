@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment android:id="@+id/dashboardFragment"
+        android:name="com.mpesa.tracker.ui.dashboard.DashboardFragment"
+        android:label="Home"/>
+    <fragment android:id="@+id/transactionsFragment"
+        android:name="com.mpesa.tracker.ui.transactions.TransactionsFragment"
+        android:label="Transactions"/>
+    <fragment android:id="@+id/budgetFragment"
+        android:name="com.mpesa.tracker.ui.budget.BudgetFragment"
+        android:label="Budget"/>
+    <fragment android:id="@+id/analyticsFragment"
+        android:name="com.mpesa.tracker.ui.analytics.AnalyticsFragment"
+        android:label="Analytics"/>
+    <fragment android:id="@+id/exportFragment"
+        android:name="com.mpesa.tracker.ui.export.ExportFragment"
+        android:label="Reports"/>
+    <fragment android:id="@+id/settingsFragment"
+        android:name="com.mpesa.tracker.ui.settings.SettingsFragment"
+        android:label="Settings"/>
+</navigation>

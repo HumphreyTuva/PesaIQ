@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">M-Pesa Tracker</string>
+    <string name="title_analytics">Analytics</string>
+    <string name="label_expenditure_breakdown">EXPENDITURE BREAKDOWN</string>
+    <string name="label_monthly_trend">MONTHLY TREND</string>
+    <string name="trend_coming_soon">Trend visualization coming soon</string>
+    <string name="exclusion_examples">💡 Examples:\n• \"ziidi\" → blocks Ziidi Invest, Ziidi Trader\n• \"international\" → blocks any international transfer\n• \"loan repayment\" → exact match only</string>
+</resources>

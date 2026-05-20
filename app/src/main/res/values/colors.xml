@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Modern Light Theme (Inspired by Konnect Design) -->
+    <color name="brand_orange">#FF9800</color>
+    <color name="brand_orange_light">#33FF9800</color>
+    <color name="brand_yellow">#FFD600</color>
+
+    <color name="bg_main">#F5F5F7</color>
+    <color name="bg_surface_light">#FFFFFF</color>
+    <color name="bg_card_white">#FFFFFF</color>
+
+    <color name="text_main">#1D1D1F</color>
+    <color name="text_sub">#6E6E73</color>
+    <color name="text_muted">#86868B</color>
+
+    <color name="accent_green">#00E676</color>
+    <color name="accent_red">#FF5252</color>
+
+    <color name="border_light">#E5E5EA</color>
+
+    <!-- Legacy compatibility (kept but updated) -->
+    <color name="purple_primary">#FF9800</color>
+    <color name="purple_light">#FFB300</color>
+    <color name="bg_deep">#F0F0F2</color>
+    <color name="bg_surface">#FFFFFF</color>
+    <color name="text_primary">#1D1D1F</color>
+    <color name="text_secondary">#6E6E73</color>
+    <color name="income_green">#00E676</color>
+    <color name="expense_red">#FF5252</color>
+    <color name="white">#FFFFFF</color>
+    <color name="chart_1">#9D4EDD</color>
+    <color name="chart_2">#00E5A0</color>
+    <color name="chart_3">#FF6B9D</color>
+    <color name="chart_4">#00C8FF</color>
+    <color name="chart_5">#FFB800</color>
+    <color name="chart_6">#FF6348</color>
+    <color name="chart_7">#7BED9F</color>
+    <color name="chart_8">#FF4757</color>
+    <color name="green_500">#00E5A0</color>
+    <color name="red_500">#FF4757</color>
+    <color name="background_grey">#F5F5F7</color>
+    <color name="colorPrimary">#FF9800</color>
+    <color name="colorPrimaryVariant">#F57C00</color>
+    <color name="colorSecondary">#FFD600</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+
+    <!-- Missing colors found during linking -->
+    <color name="text_hint">#A1A1A6</color>
+    <color name="bg_card">#FFFFFF</color>
+    <color name="border_medium">#C7C7CC</color>
+    <color name="bg_elevated">#FFFFFF</color>
+    <color name="warning_amber">#FFBF00</color>
+</resources>
