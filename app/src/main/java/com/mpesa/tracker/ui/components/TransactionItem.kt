@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,9 +22,10 @@ import com.mpesa.tracker.data.model.TransactionType
 @Composable
 fun TransactionItem(
     transaction: Transaction,
-    onClick: () -> Unit,
-    isDark: Boolean = true
+    onClick: () -> Unit
 ) {
+    val colorScheme = MaterialTheme.colorScheme
+    
     val accentColor = when (transaction.type) {
         TransactionType.RECEIVE -> Color(0xFF00E676)
         TransactionType.SEND -> Color(0xFFFF9800)
@@ -31,7 +33,7 @@ fun TransactionItem(
         TransactionType.BUY_GOODS -> Color(0xFF9D4EDD)
         TransactionType.WITHDRAW -> Color(0xFFADB5BD)
         TransactionType.AIRTIME -> Color(0xFF03A9F4)
-        else -> if (isDark) Color.White else Color.Black
+        else -> colorScheme.onSurface
     }
 
     val emoji = when (transaction.type) {
@@ -44,9 +46,9 @@ fun TransactionItem(
         else -> "💸"
     }
 
-    val textColor = if (isDark) Color.White else Color.Black
-    val secondaryTextColor = if (isDark) Color(0xFF8890B0) else Color(0xFF6E6E73)
-    val surfaceColor = if (isDark) Color(0xFF1A1C1E) else Color(0xFFFFFFFF)
+    val textColor = colorScheme.onSurface
+    val secondaryTextColor = colorScheme.onSurfaceVariant
+    val surfaceColor = colorScheme.surface
 
     Row(
         modifier = Modifier

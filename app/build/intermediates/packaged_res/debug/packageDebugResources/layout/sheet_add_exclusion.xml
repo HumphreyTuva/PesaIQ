@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/bg_card"
+    android:background="?attr/colorSurface"
     android:paddingHorizontal="24dp"
     android:paddingTop="16dp"
     android:paddingBottom="32dp">
@@ -15,7 +15,7 @@
         android:layout_height="4dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"
-        android:background="@color/border_medium"/>
+        android:background="?attr/colorOutlineVariant"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,14 +23,14 @@
         android:text="Add Exclusion Rule"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/text_primary"/>
+        android:textColor="?attr/colorOnSurface"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Transactions matching this keyword will be silently ignored."
         android:textSize="13sp"
-        android:textColor="@color/text_secondary"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:layout_marginTop="4dp"/>
 
     <TextView
@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:text="KEYWORD"
         style="@style/SectionHeader"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="8dp"/>
 
@@ -51,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:textColor="@color/text_primary"/>
+            android:textColor="?attr/colorOnSurface"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -59,6 +60,7 @@
         android:layout_height="wrap_content"
         android:text="MATCH TYPE"
         style="@style/SectionHeader"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"/>
 
@@ -98,7 +100,7 @@
         android:padding="10dp"
         android:text="@string/exclusion_examples"
         android:textSize="12sp"
-        android:textColor="@color/text_secondary"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:lineSpacingMultiplier="1.4"/>
 
     <LinearLayout
@@ -109,7 +111,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_cancel_exclusion"
-            style="@style/OutlineButton"
+            style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="52dp"
             android:layout_weight="1"
@@ -118,11 +120,12 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_save_exclusion"
-            style="@style/PurpleButton"
+            style="@style/Widget.Material3.Button"
             android:layout_width="0dp"
             android:layout_height="52dp"
             android:layout_weight="1"
             android:text="Add Rule"
             android:layout_marginStart="8dp"/>
     </LinearLayout>
+
 </LinearLayout>

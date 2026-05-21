@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="4dp"
-    app:cardBackgroundColor="@color/bg_main"
+    app:cardBackgroundColor="?attr/colorSurface"
     app:cardCornerRadius="14dp"
-    app:cardElevation="2dp"
-    app:strokeColor="@color/border_light"
+    app:cardElevation="0dp"
+    app:strokeColor="?attr/colorOutlineVariant"
     app:strokeWidth="1dp">
 
     <LinearLayout
@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    android:textColor="@color/text_main"
+                    android:textColor="?attr/colorOnSurface"
                     android:text="m-shwari"/>
                 <TextView
                     android:id="@+id/tv_preset_badge"
@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="11sp"
-                android:textColor="@color/text_sub"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:layout_marginTop="2dp"
                 android:text="contains"/>
         </LinearLayout>
@@ -80,7 +80,7 @@
             android:layout_height="32dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@android:drawable/ic_menu_delete"
-            app:tint="@color/text_muted"
+            app:tint="?attr/colorOnSurfaceVariant"
             android:contentDescription="Delete rule"
             android:padding="6dp"
             android:layout_marginEnd="8dp"/>

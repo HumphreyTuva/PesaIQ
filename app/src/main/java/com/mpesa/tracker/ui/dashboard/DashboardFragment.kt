@@ -38,6 +38,7 @@ import com.mpesa.tracker.ui.components.GradientEdgeCard
 import com.mpesa.tracker.ui.components.SoftActionButton
 import com.mpesa.tracker.ui.components.SpendingOverviewCard
 import com.mpesa.tracker.ui.components.TransactionItem
+import com.mpesa.tracker.ui.theme.MpesaTrackerTheme
 import com.mpesa.tracker.utils.ThemeManager
 import java.text.SimpleDateFormat
 import java.util.*
@@ -52,9 +53,19 @@ class DashboardFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                MaterialTheme {
+                val context = LocalContext.current
+                val currentMode = remember { mutableStateOf(ThemeManager.getUiMode(context)) }
+                
+                val isDark = when (currentMode.value) {
+                    ThemeManager.UiMode.DARK -> true
+                    ThemeManager.UiMode.LIGHT -> false
+                    ThemeManager.UiMode.FOLLOW_SYSTEM -> androidx.compose.foundation.isSystemInDarkTheme()
+                }
+
+                MpesaTrackerTheme(darkTheme = isDark) {
                     DashboardScreen(
                         viewModel = viewModel,
+                        currentMode = currentMode,
                         onTransactionClick = { /* Handle transaction click if needed */ },
                         onSeeAllClick = { findNavController().navigate(R.id.transactionsFragment) },
                         onSettingsClick = { findNavController().navigate(R.id.settingsFragment) },
@@ -74,6 +85,7 @@ class DashboardFragment : Fragment() {
 @Composable
 fun DashboardScreen(
     viewModel: DashboardViewModel,
+    currentMode: MutableState<ThemeManager.UiMode>,
     onTransactionClick: (Transaction) -> Unit,
     onSeeAllClick: () -> Unit,
     onSettingsClick: () -> Unit,
@@ -85,23 +97,13 @@ fun DashboardScreen(
     val selectedMonth by viewModel.selectedMonth.observeAsState()
     val selectedYear by viewModel.selectedYear.observeAsState()
     val context = LocalContext.current
-    val currentMode = remember { mutableStateOf(ThemeManager.getUiMode(context)) }
     
-    val isDark = when (currentMode.value) {
-        ThemeManager.UiMode.DARK -> true
-        ThemeManager.UiMode.LIGHT -> false
-        ThemeManager.UiMode.FOLLOW_SYSTEM -> androidx.compose.foundation.isSystemInDarkTheme()
-    }
-
-    val bgColor = if (isDark) ComposeColor(0xFF0C0D11) else ComposeColor(0xFFF5F5F7)
-    val surfaceColor = if (isDark) ComposeColor(0xFF1A1C1E) else ComposeColor(0xFFFFFFFF)
-    val textColor = if (isDark) ComposeColor.White else ComposeColor.Black
-    val secondaryTextColor = if (isDark) ComposeColor(0xFF8890B0) else ComposeColor(0xFF6E6E73)
+    val colorScheme = MaterialTheme.colorScheme
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(bgColor)
+            .background(colorScheme.background)
     ) {
         // --- FIXED TOP PART ---
         Column(
@@ -117,7 +119,7 @@ fun DashboardScreen(
             ) {
                 Text(
                     text = "M-Tracker",
-                    color = textColor,
+                    color = colorScheme.onBackground,
                     fontSize = 32.sp,
                     fontWeight = FontWeight.ExtraBold
                 )
@@ -141,7 +143,7 @@ fun DashboardScreen(
                                 Icons.Default.DarkMode
                             },
                             contentDescription = "Toggle Theme",
-                            tint = secondaryTextColor
+                            tint = colorScheme.onSurfaceVariant
                         )
                     }
                     Spacer(Modifier.width(20.dp))
@@ -149,7 +151,7 @@ fun DashboardScreen(
                         Icon(
                             Icons.Default.Settings,
                             contentDescription = "Settings",
-                            tint = secondaryTextColor
+                            tint = colorScheme.onSurfaceVariant
                         )
                     }
                 }
@@ -166,7 +168,6 @@ fun DashboardScreen(
                     text = "Scan",
                     accentColor = ComposeColor(0xFF536D7A),
                     modifier = Modifier.weight(1f),
-                    isDark = isDark,
                     icon = { Icon(Icons.Default.Refresh, null, tint = ComposeColor(0xFF81A1C1), modifier = Modifier.size(16.dp)) },
                     onClick = onScanClick
                 )
@@ -175,7 +176,6 @@ fun DashboardScreen(
                     text = "Insights",
                     accentColor = ComposeColor(0xFF8B6E5A),
                     modifier = Modifier.weight(1f),
-                    isDark = isDark,
                     icon = { Icon(Icons.Default.PieChart, null, tint = ComposeColor(0xFFD08770), modifier = Modifier.size(16.dp)) },
                     onClick = onInsightsClick
                 )
@@ -184,7 +184,6 @@ fun DashboardScreen(
                     text = "Export",
                     accentColor = ComposeColor(0xFF8F5E5E),
                     modifier = Modifier.weight(1f),
-                    isDark = isDark,
                     icon = { Icon(Icons.Default.Share, null, tint = ComposeColor(0xFFBF616A), modifier = Modifier.size(16.dp)) },
                     onClick = onExportClick
                 )
@@ -201,7 +200,7 @@ fun DashboardScreen(
                 Column {
                     Text(
                         text = "Spending Overview",
-                        color = textColor,
+                        color = colorScheme.onBackground,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
                     )
@@ -210,18 +209,18 @@ fun DashboardScreen(
                             .padding(top = 6.dp)
                             .width(40.dp)
                             .height(3.dp)
-                            .background(ComposeColor(0xFFFF9800))
+                            .background(colorScheme.primary)
                     )
                 }
 
                 Row(
                     modifier = Modifier
-                        .background(surfaceColor, CircleShape)
+                        .background(colorScheme.surface, CircleShape)
                         .padding(horizontal = 4.dp, vertical = 2.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     IconButton(onClick = { viewModel.previousMonth() }, modifier = Modifier.size(24.dp)) {
-                        Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, null, tint = textColor)
+                        Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, null, tint = colorScheme.onSurface)
                     }
                     val monthLabel = remember(selectedMonth, selectedYear) {
                         if (selectedMonth != null && selectedYear != null) {
@@ -231,13 +230,13 @@ fun DashboardScreen(
                     }
                     Text(
                         text = monthLabel,
-                        color = textColor,
+                        color = colorScheme.onSurface,
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(horizontal = 8.dp)
                     )
                     IconButton(onClick = { viewModel.nextMonth() }, modifier = Modifier.size(24.dp)) {
-                        Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = textColor)
+                        Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = colorScheme.onSurface)
                     }
                 }
             }
@@ -254,8 +253,7 @@ fun DashboardScreen(
                 SpendingOverviewCard(
                     remainingDays = remainingDays,
                     balance = it.balance,
-                    monthlyLimit = it.monthlyLimit,
-                    isDark = isDark
+                    monthlyLimit = it.monthlyLimit
                 )
 
                 Spacer(Modifier.height(12.dp))
@@ -263,22 +261,20 @@ fun DashboardScreen(
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                     GradientEdgeCard(
                         colors = listOf(ComposeColor(0xFF4C8D9B), ComposeColor(0xFF88C0D0)),
-                        modifier = Modifier.weight(1f),
-                        isDark = isDark
+                        modifier = Modifier.weight(1f)
                     ) {
                         Column {
-                            Text("INCOME", color = secondaryTextColor, fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                            Text("%,.0f".format(it.totalIncome), color = textColor, fontSize = 20.sp, fontWeight = FontWeight.Black)
+                            Text("INCOME", color = colorScheme.onSurfaceVariant, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            Text("%,.0f".format(it.totalIncome), color = colorScheme.onSurface, fontSize = 20.sp, fontWeight = FontWeight.Black)
                         }
                     }
                     GradientEdgeCard(
                         colors = listOf(ComposeColor(0xFFBF616A), ComposeColor(0xFFD08770)),
-                        modifier = Modifier.weight(1f),
-                        isDark = isDark
+                        modifier = Modifier.weight(1f)
                     ) {
                         Column {
-                            Text("EXPENSES", color = secondaryTextColor, fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                            Text("%,.0f".format(it.totalExpenses), color = textColor, fontSize = 20.sp, fontWeight = FontWeight.Black)
+                            Text("EXPENSES", color = colorScheme.onSurfaceVariant, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            Text("%,.0f".format(it.totalExpenses), color = colorScheme.onSurface, fontSize = 20.sp, fontWeight = FontWeight.Black)
                         }
                     }
                 }
@@ -297,13 +293,13 @@ fun DashboardScreen(
         ) {
             Text(
                 text = "Recent Transactions",
-                color = textColor,
+                color = colorScheme.onBackground,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold
             )
             Text(
                 text = "See all →",
-                color = ComposeColor(0xFFFF9800),
+                color = colorScheme.primary,
                 fontSize = 13.sp,
                 modifier = Modifier.clickable { onSeeAllClick() }
             )
@@ -314,7 +310,7 @@ fun DashboardScreen(
         // Transaction List Container (Scrollable part)
         Surface(
             modifier = Modifier.weight(1f).fillMaxWidth(),
-            color = surfaceColor,
+            color = colorScheme.surface,
             shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
         ) {
             LazyColumn(
@@ -325,8 +321,7 @@ fun DashboardScreen(
                 items(transactions) { tx ->
                     TransactionItem(
                         transaction = tx,
-                        onClick = { onTransactionClick(tx) },
-                        isDark = isDark
+                        onClick = { onTransactionClick(tx) }
                     )
                 }
                 
@@ -341,7 +336,7 @@ fun DashboardScreen(
 
             if (state?.isLoading == true) {
                 Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator(color = ComposeColor(0xFFFF9800))
+                    CircularProgressIndicator(color = colorScheme.primary)
                 }
             }
         }

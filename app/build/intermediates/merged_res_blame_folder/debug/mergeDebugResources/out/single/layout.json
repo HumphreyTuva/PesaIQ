@@ -4,8 +4,8 @@
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\dialog_add_budget.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\item_budget.xml",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\item_budget.xml"
+        "merged": "com.mpesa.tracker.app-mergeDebugResources-79:/layout/layout_settings_appearance.xml",
+        "source": "com.mpesa.tracker.app-main-82:/layout/layout_settings_appearance.xml"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\fragment_export.xml",
@@ -16,12 +16,64 @@
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\activity_main.xml"
     },
     {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\item_category_manage.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\item_category_manage.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\item_mom_comparison.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\item_mom_comparison.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-mergeDebugResources-79:/layout/sheet_custom_color.xml",
+        "source": "com.mpesa.tracker.app-main-82:/layout/sheet_custom_color.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-mergeDebugResources-79:/layout/sheet_add_exclusion.xml",
+        "source": "com.mpesa.tracker.app-main-82:/layout/sheet_add_exclusion.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-mergeDebugResources-79:/layout/dialog_edit_transaction.xml",
+        "source": "com.mpesa.tracker.app-main-82:/layout/dialog_edit_transaction.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-mergeDebugResources-79:/layout/item_budget.xml",
+        "source": "com.mpesa.tracker.app-main-82:/layout/item_budget.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-mergeDebugResources-79:/layout/fragment_analytics.xml",
+        "source": "com.mpesa.tracker.app-main-82:/layout/fragment_analytics.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\fragment_budget.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\fragment_budget.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\fragment_dashboard.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\fragment_dashboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\sheet_custom_color.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\sheet_custom_color.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\sheet_add_exclusion.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\sheet_add_exclusion.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\layout_settings_categories.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\layout_settings_categories.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\item_budget.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\item_budget.xml"
+    },
+    {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\dialog_edit_transaction.xml",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\dialog_edit_transaction.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\item_category_manage.xml",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\item_category_manage.xml"
+        "merged": "com.mpesa.tracker.app-mergeDebugResources-79:/layout/sheet_add_category.xml",
+        "source": "com.mpesa.tracker.app-main-82:/layout/sheet_add_category.xml"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\fragment_transactions.xml",
@@ -40,24 +92,24 @@
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\sheet_add_category.xml"
     },
     {
+        "merged": "com.mpesa.tracker.app-mergeDebugResources-79:/layout/item_analytics_table_row.xml",
+        "source": "com.mpesa.tracker.app-main-82:/layout/item_analytics_table_row.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-mergeDebugResources-79:/layout/layout_settings_transactions.xml",
+        "source": "com.mpesa.tracker.app-main-82:/layout/layout_settings_transactions.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\item_analytics_table_row.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\item_analytics_table_row.xml"
+    },
+    {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\item_exclusion_rule.xml",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\item_exclusion_rule.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\fragment_dashboard.xml",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\fragment_dashboard.xml"
-    },
-    {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\fragment_settings.xml",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\fragment_settings.xml"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\fragment_budget.xml",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\fragment_budget.xml"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\sheet_custom_color.xml",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\sheet_custom_color.xml"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\item_color_circle.xml",
@@ -72,15 +124,11 @@
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\item_transaction.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\sheet_add_exclusion.xml",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\sheet_add_exclusion.xml"
+        "merged": "com.mpesa.tracker.app-mergeDebugResources-79:/layout/dialog_add_budget.xml",
+        "source": "com.mpesa.tracker.app-main-82:/layout/dialog_add_budget.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-mergeDebugResources-79:\\layout\\layout_settings_categories.xml",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\layout_settings_categories.xml"
-    },
-    {
-        "merged": "com.mpesa.tracker.app-mergeDebugResources-79:/layout/fragment_settings.xml",
-        "source": "com.mpesa.tracker.app-main-82:/layout/fragment_settings.xml"
+        "merged": "com.mpesa.tracker.app-mergeDebugResources-79:/layout/layout_settings_categories.xml",
+        "source": "com.mpesa.tracker.app-main-82:/layout/layout_settings_categories.xml"
     }
 ]

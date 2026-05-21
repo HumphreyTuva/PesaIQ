@@ -34,6 +34,7 @@ import androidx.fragment.app.viewModels
 import com.mpesa.tracker.MpesaTrackerApp
 import com.mpesa.tracker.data.model.BudgetWithSpent
 import com.mpesa.tracker.ui.components.GradientEdgeCard
+import com.mpesa.tracker.ui.theme.MpesaTrackerTheme
 import com.mpesa.tracker.utils.ThemeManager
 import java.text.SimpleDateFormat
 import java.util.*
@@ -48,7 +49,16 @@ class BudgetFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                MaterialTheme {
+                val context = LocalContext.current
+                val currentMode = remember { mutableStateOf(ThemeManager.getUiMode(context)) }
+
+                val isDark = when (currentMode.value) {
+                    ThemeManager.UiMode.DARK -> true
+                    ThemeManager.UiMode.LIGHT -> false
+                    ThemeManager.UiMode.FOLLOW_SYSTEM -> androidx.compose.foundation.isSystemInDarkTheme()
+                }
+
+                MpesaTrackerTheme(darkTheme = isDark) {
                     BudgetScreen(viewModel = viewModel)
                 }
             }
@@ -61,19 +71,6 @@ class BudgetFragment : Fragment() {
 fun BudgetScreen(viewModel: BudgetViewModel) {
     val budgetsWithSpent by viewModel.budgetsWithSpent.observeAsState(emptyList())
     val monthName = remember { SimpleDateFormat("MMMM yyyy", Locale.getDefault()).format(Calendar.getInstance().time) }
-    
-    val context = LocalContext.current
-    val currentMode = remember { mutableStateOf(ThemeManager.getUiMode(context)) }
-    val isDark = when (currentMode.value) {
-        ThemeManager.UiMode.DARK -> true
-        ThemeManager.UiMode.LIGHT -> false
-        ThemeManager.UiMode.FOLLOW_SYSTEM -> androidx.compose.foundation.isSystemInDarkTheme()
-    }
-
-    val bgColor = if (isDark) ComposeColor(0xFF0C0D11) else ComposeColor(0xFFF5F5F7)
-    val surfaceColor = if (isDark) ComposeColor(0xFF1A1C1E) else ComposeColor(0xFFFFFFFF)
-    val textColor = if (isDark) ComposeColor.White else ComposeColor.Black
-    val secondaryTextColor = if (isDark) ComposeColor(0xFF8890B0) else ComposeColor(0xFF6E6E73)
 
     var showAddSheet by remember { mutableStateOf(false) }
     var editingBudget by remember { mutableStateOf<BudgetWithSpent?>(null) }
@@ -84,7 +81,7 @@ fun BudgetScreen(viewModel: BudgetViewModel) {
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        containerColor = bgColor
+        containerColor = MaterialTheme.colorScheme.background
     ) { padding ->
         Box(
             modifier = Modifier
@@ -98,11 +95,20 @@ fun BudgetScreen(viewModel: BudgetViewModel) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(surfaceColor)
+                        .background(MaterialTheme.colorScheme.surface)
                         .padding(20.dp)
                 ) {
-                    Text("Monthly Budget", color = textColor, fontSize = 24.sp, fontWeight = FontWeight.ExtraBold)
-                    Text(monthName, color = secondaryTextColor, fontSize = 14.sp)
+                    Text(
+                        "Monthly Budget",
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.ExtraBold
+                    )
+                    Text(
+                        monthName,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        fontSize = 14.sp
+                    )
 
                     Spacer(Modifier.height(24.dp))
 
@@ -110,22 +116,40 @@ fun BudgetScreen(viewModel: BudgetViewModel) {
                     Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                         GradientEdgeCard(
                             colors = listOf(ComposeColor(0xFF536D7A), ComposeColor(0xFF81A1C1)),
-                            modifier = Modifier.weight(1f),
-                            isDark = isDark
+                            modifier = Modifier.weight(1f)
                         ) {
                             Column {
-                                Text("TOTAL BUDGET", color = secondaryTextColor, fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                                Text("%,.0f".format(totalBudget), color = textColor, fontSize = 20.sp, fontWeight = FontWeight.Black)
+                                Text(
+                                    "TOTAL BUDGET",
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    fontSize = 11.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Text(
+                                    "%,.0f".format(totalBudget),
+                                    color = MaterialTheme.colorScheme.onSurface,
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Black
+                                )
                             }
                         }
                         GradientEdgeCard(
                             colors = listOf(ComposeColor(0xFF00E676), ComposeColor(0xFF7BED9F)),
-                            modifier = Modifier.weight(1f),
-                            isDark = isDark
+                            modifier = Modifier.weight(1f)
                         ) {
                             Column {
-                                Text("REMAINING", color = secondaryTextColor, fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                                Text("%,.0f".format(remaining), color = textColor, fontSize = 20.sp, fontWeight = FontWeight.Black)
+                                Text(
+                                    "REMAINING",
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    fontSize = 11.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Text(
+                                    "%,.0f".format(remaining),
+                                    color = MaterialTheme.colorScheme.onSurface,
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Black
+                                )
                             }
                         }
                     }
@@ -140,17 +164,13 @@ fun BudgetScreen(viewModel: BudgetViewModel) {
                     if (budgetsWithSpent.isEmpty()) {
                         item {
                             Box(Modifier.fillParentMaxHeight(0.6f).fillMaxWidth(), contentAlignment = Alignment.Center) {
-                                Text("No budgets set for this month", color = ComposeColor.Gray)
+                                Text("No budgets set for this month", color = MaterialTheme.colorScheme.onSurfaceVariant)
                             }
                         }
                     } else {
                         items(budgetsWithSpent) { item ->
                             BudgetItem(
                                 item = item,
-                                isDark = isDark,
-                                textColor = textColor,
-                                secondaryTextColor = secondaryTextColor,
-                                surfaceColor = surfaceColor,
                                 onClick = { editingBudget = item }
                             )
                         }
@@ -166,8 +186,8 @@ fun BudgetScreen(viewModel: BudgetViewModel) {
             ) {
                 FloatingActionButton(
                     onClick = { showAddSheet = true },
-                    containerColor = ComposeColor(0xFFFF9800),
-                    contentColor = ComposeColor.White,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary,
                     shape = CircleShape,
                     modifier = Modifier.size(56.dp)
                 ) {
@@ -185,7 +205,6 @@ fun BudgetScreen(viewModel: BudgetViewModel) {
             
             AddBudgetSheet(
                 categories = filteredCategories,
-                isDark = isDark,
                 onSave = { cat, limit ->
                     viewModel.addBudget(cat, limit)
                     showAddSheet = false
@@ -197,7 +216,6 @@ fun BudgetScreen(viewModel: BudgetViewModel) {
         editingBudget?.let { item ->
             AddBudgetSheet(
                 categories = listOf(item.budget.category),
-                isDark = isDark,
                 initialAmount = item.budget.limitAmount.toString(),
                 isEditing = true,
                 onSave = { _, limit ->
@@ -217,10 +235,6 @@ fun BudgetScreen(viewModel: BudgetViewModel) {
 @Composable
 fun BudgetItem(
     item: BudgetWithSpent,
-    isDark: Boolean,
-    textColor: ComposeColor,
-    secondaryTextColor: ComposeColor,
-    surfaceColor: ComposeColor,
     onClick: () -> Unit
 ) {
     val progress = (item.spent / item.budget.limitAmount).toFloat().coerceIn(0f, 1f)
@@ -232,8 +246,11 @@ fun BudgetItem(
 
     Surface(
         shape = RoundedCornerShape(20.dp),
-        color = surfaceColor,
-        border = androidx.compose.foundation.BorderStroke(1.dp, if (isDark) ComposeColor(0xFF2A2D32) else ComposeColor(0xFFE5E5EA)),
+        color = MaterialTheme.colorScheme.surface,
+        border = androidx.compose.foundation.BorderStroke(
+            1.dp,
+            MaterialTheme.colorScheme.outlineVariant
+        ),
         modifier = Modifier
             .fillMaxWidth()
             .clickable { onClick() }
@@ -244,10 +261,15 @@ fun BudgetItem(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(item.budget.category, color = textColor, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                Text(
+                    item.budget.category,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold
+                )
                 Text(
                     "Ksh %,.0f / %,.0f".format(item.spent, item.budget.limitAmount),
-                    color = secondaryTextColor,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontSize = 13.sp
                 )
             }
@@ -260,7 +282,7 @@ fun BudgetItem(
                     .fillMaxWidth()
                     .height(8.dp)
                     .clip(CircleShape)
-                    .background(if (isDark) ComposeColor(0xFF232529) else ComposeColor(0xFFE5E5EA))
+                    .background(MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
             ) {
                 Box(
                     modifier = Modifier
@@ -287,7 +309,6 @@ fun BudgetItem(
 @Composable
 fun AddBudgetSheet(
     categories: List<String>,
-    isDark: Boolean,
     initialAmount: String = "",
     isEditing: Boolean = false,
     onSave: (String, Double) -> Unit,
@@ -296,15 +317,11 @@ fun AddBudgetSheet(
 ) {
     var selectedCategory by remember { mutableStateOf(categories.firstOrNull() ?: "") }
     var amount by remember { mutableStateOf(initialAmount) }
-    
-    val surfaceColor = if (isDark) ComposeColor(0xFF1A1C1E) else ComposeColor(0xFFFFFFFF)
-    val textColor = if (isDark) ComposeColor.White else ComposeColor.Black
-    val secondaryTextColor = if (isDark) ComposeColor(0xFF8890B0) else ComposeColor(0xFF6E6E73)
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
-        containerColor = surfaceColor,
-        dragHandle = { BottomSheetDefaults.DragHandle(color = if (isDark) ComposeColor(0xFFB0B4BC) else ComposeColor(0xFF8E8E93)) }
+        containerColor = MaterialTheme.colorScheme.surface,
+        dragHandle = { BottomSheetDefaults.DragHandle(color = MaterialTheme.colorScheme.onSurfaceVariant) }
     ) {
         Column(
             modifier = Modifier
@@ -314,17 +331,17 @@ fun AddBudgetSheet(
         ) {
             Text(
                 text = if (isEditing) "Edit Budget" else "Set Category Budget",
-                color = textColor,
+                color = MaterialTheme.colorScheme.onSurface,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
             Spacer(Modifier.height(24.dp))
 
             if (!isEditing) {
-                Text("Category", color = secondaryTextColor, fontSize = 12.sp)
+                Text("Category", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 12.sp)
                 Spacer(Modifier.height(8.dp))
                 if (categories.isEmpty()) {
-                    Text("All categories already have budgets", color = ComposeColor.Red, fontSize = 12.sp)
+                    Text("All categories already have budgets", color = MaterialTheme.colorScheme.error, fontSize = 12.sp)
                 } else {
                     LazyColumn(modifier = Modifier.height(120.dp)) {
                         items(categories) { cat ->
@@ -339,29 +356,37 @@ fun AddBudgetSheet(
                                 RadioButton(
                                     selected = isSelected,
                                     onClick = { selectedCategory = cat },
-                                    colors = RadioButtonDefaults.colors(selectedColor = ComposeColor(0xFFFF9800))
+                                    colors = RadioButtonDefaults.colors(selectedColor = MaterialTheme.colorScheme.primary)
                                 )
-                                Text(cat, color = textColor, modifier = Modifier.padding(start = 8.dp))
+                                Text(
+                                    cat,
+                                    color = MaterialTheme.colorScheme.onSurface,
+                                    modifier = Modifier.padding(start = 8.dp)
+                                )
                             }
                         }
                     }
                 }
                 Spacer(Modifier.height(24.dp))
             } else {
-                Text("Category: $selectedCategory", color = textColor, fontWeight = FontWeight.Medium)
+                Text(
+                    "Category: $selectedCategory",
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontWeight = FontWeight.Medium
+                )
                 Spacer(Modifier.height(16.dp))
             }
 
             OutlinedTextField(
                 value = amount,
                 onValueChange = { amount = it },
-                label = { Text("Monthly Limit (Ksh)", color = secondaryTextColor) },
+                label = { Text("Monthly Limit (Ksh)", color = MaterialTheme.colorScheme.onSurfaceVariant) },
                 modifier = Modifier.fillMaxWidth(),
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedTextColor = textColor,
-                    unfocusedTextColor = textColor,
-                    focusedBorderColor = ComposeColor(0xFFFF9800),
-                    unfocusedBorderColor = if (isDark) ComposeColor(0xFF2A2C32) else ComposeColor(0xFFE5E5EA)
+                    focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                    unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant
                 )
             )
 
@@ -372,8 +397,8 @@ fun AddBudgetSheet(
                     OutlinedButton(
                         onClick = onDelete,
                         modifier = Modifier.weight(1f).height(54.dp),
-                        colors = ButtonDefaults.outlinedButtonColors(contentColor = ComposeColor.Red),
-                        border = androidx.compose.foundation.BorderStroke(1.dp, ComposeColor.Red),
+                        colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.error),
+                        border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.error),
                         shape = RoundedCornerShape(12.dp)
                     ) {
                         Text("Delete")
@@ -388,13 +413,13 @@ fun AddBudgetSheet(
                         }
                     },
                     modifier = Modifier.weight(2f).height(54.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = ComposeColor(0xFFFF9800)),
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                     shape = RoundedCornerShape(12.dp),
                     enabled = selectedCategory.isNotEmpty()
                 ) {
                     Text(
                         text = if (isEditing) "Update Budget" else "Save Budget",
-                        color = ComposeColor.Black,
+                        color = MaterialTheme.colorScheme.onPrimary,
                         fontWeight = FontWeight.Bold
                     )
                 }

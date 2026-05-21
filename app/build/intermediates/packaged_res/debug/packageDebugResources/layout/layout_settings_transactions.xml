@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="@color/bg_dark_card">
+    android:background="?attr/colorSurface">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,17 +20,18 @@
             android:text="Transaction Controls"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/text_white"/>
+            android:textColor="?attr/colorOnSurface"/>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_exclusion"
             android:layout_width="48dp"
             android:layout_height="48dp"
             app:fabCustomSize="48dp"
             android:src="@android:drawable/ic_input_add"
-            app:tint="@color/white"
-            app:backgroundTint="@color/brand_orange"
+            app:tint="?attr/colorOnPrimaryContainer"
+            app:backgroundTint="?attr/colorPrimaryContainer"
             app:shapeAppearanceOverlay="@style/ShapeAppearance.MpesaTracker.Circle"
             android:contentDescription="Add exclusion rule"/>
+
     </LinearLayout>
 
     <TextView
@@ -38,7 +39,7 @@
         android:layout_height="wrap_content"
         android:text="Excluded transactions are silently ignored — not saved."
         android:textSize="13sp"
-        android:textColor="@color/text_gray_light"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:layout_marginBottom="20dp"/>
 
     <TextView
@@ -48,7 +49,7 @@
         android:gravity="center"
         android:padding="32dp"
         android:text="No exclusion rules yet"
-        android:textColor="@color/text_gray_light"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:textSize="14sp"
         android:visibility="gone"/>
 

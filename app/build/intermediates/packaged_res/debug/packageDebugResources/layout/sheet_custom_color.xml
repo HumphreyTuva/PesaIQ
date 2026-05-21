@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/bg_card"
+    android:background="?attr/colorSurface"
     android:paddingHorizontal="24dp"
     android:paddingTop="16dp"
     android:paddingBottom="32dp">
@@ -14,7 +14,7 @@
         android:layout_height="4dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"
-        android:background="@color/border_medium"/>
+        android:background="?attr/colorOutlineVariant"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
         android:text="Custom Accent Color"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/text_primary"/>
+        android:textColor="?attr/colorOnSurface"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:textColor="@color/text_primary"
+                android:textColor="?attr/colorOnSurface"
                 android:text="#"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -53,7 +53,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="12dp"
             android:background="@drawable/bg_color_circle"
-            android:backgroundTint="#00A651"/>
+            android:backgroundTint="?attr/colorPrimary"/>
     </LinearLayout>
 
     <TextView
@@ -61,8 +61,9 @@
         android:layout_height="wrap_content"
         android:text="Enter any valid 6-digit hex color, e.g. #FF5733"
         android:textSize="12sp"
-        android:textColor="@color/text_secondary"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:layout_marginTop="8dp"/>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_apply_color"

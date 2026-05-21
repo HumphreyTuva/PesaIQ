@@ -1,11 +1,7 @@
 [
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_bg_pill_dark.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\bg_pill_dark.xml"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_bg_quick_action.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\bg_quick_action.xml"
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-hdpi_ic_launcher_monochrome.webp.flat",
@@ -20,16 +16,220 @@
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\btn_icon_bg.xml"
     },
     {
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-xxhdpi_ic_launcher_background.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-xxhdpi/ic_launcher_background.webp"
+    },
+    {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_nav_budget.xml.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_nav_budget.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_dialog_add_budget.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\dialog_add_budget.xml"
-    },
-    {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_bg_dialog.xml.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\bg_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_trending_down.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_trending_down.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_item_mom_comparison.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\item_mom_comparison.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_nav_settings.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_nav_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\color_chip_stroke_selector.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\color\\chip_stroke_selector.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-mdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-mdpi\\ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-hdpi_ic_launcher_background.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-hdpi/ic_launcher_background.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_nav_export.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_nav_export.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_sheet_custom_color.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\sheet_custom_color.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_item_exclusion_rule.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\item_exclusion_rule.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_notification.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_notification.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_bg_check_circle.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\bg_check_circle.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_more_vert.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_more_vert.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-xxxhdpi_ic_launcher_monochrome.webp.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-xxxhdpi\\ic_launcher_monochrome.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_fragment_settings.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\fragment_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\navigation_nav_graph.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\navigation\\nav_graph.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_dot_red.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\dot_red.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-mdpi_ic_launcher_monochrome.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-mdpi/ic_launcher_monochrome.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\menu_bottom_nav_menu.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\menu\\bottom_nav_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable-xxxhdpi_ic_stat_micon.png.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable-xxxhdpi\\ic_stat_micon.png"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable-xxhdpi_ic_stat_micon.png.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable-xxhdpi\\ic_stat_micon.png"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_close.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_close.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_spinner_dark.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\spinner_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_item_color_circle.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\item_color_circle.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable-xhdpi_ic_stat_micon.png.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable-xhdpi\\ic_stat_micon.png"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_fragment_export.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\fragment_export.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\color_nav_item_color.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\color\\nav_item_color.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-xhdpi_ic_launcher_monochrome.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-xhdpi/ic_launcher_monochrome.webp"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-hdpi_ic_launcher_monochrome.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-hdpi/ic_launcher_monochrome.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_dot_green.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\dot_green.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_bg_spinner_field.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\bg_spinner_field.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-xhdpi_ic_launcher_background.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-xhdpi/ic_launcher_background.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-xxxhdpi_ic_launcher_monochrome.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-xxxhdpi/ic_launcher_monochrome.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_dialog_edit_transaction.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\dialog_edit_transaction.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-xxxhdpi_ic_launcher_background.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-xxxhdpi/ic_launcher_background.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-xhdpi_ic_launcher_monochrome.webp.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-xhdpi\\ic_launcher_monochrome.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_bg_pill_dark.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\bg_pill_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_bg_quick_action.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\bg_quick_action.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_dialog_add_budget.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\dialog_add_budget.xml"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_item_icon_bg.xml.flat",
@@ -48,12 +248,12 @@
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\circular_progress.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\color_chip_bg_selector.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\color\\chip_bg_selector.xml"
-    },
-    {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\color_chip_bg_selector.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\color\\chip_bg_selector.xml"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_bg_color_circle.xml.flat",
@@ -62,10 +262,6 @@
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_calendar.xml.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_calendar.xml"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_nav_settings.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_nav_settings.xml"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_item_transaction.xml.flat",
@@ -88,14 +284,6 @@
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_nav_dashboard.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\color_chip_stroke_selector.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\color\\chip_stroke_selector.xml"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-mdpi_ic_launcher_foreground.webp.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-mdpi\\ic_launcher_foreground.webp"
-    },
-    {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-xxxhdpi\\ic_launcher_foreground.webp"
     },
@@ -104,56 +292,28 @@
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_nav_export.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_nav_export.xml"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_sheet_custom_color.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\sheet_custom_color.xml"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-hdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_trending_up.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_trending_up.xml"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_chevron_right.xml.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_chevron_right.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_item_exclusion_rule.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\item_exclusion_rule.xml"
-    },
-    {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_spinner_background.xml.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\spinner_background.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_notification.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_notification.xml"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_bg_check_circle.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\bg_check_circle.xml"
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-mdpi_ic_launcher_background.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-mdpi/ic_launcher_background.webp"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-xhdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-xxxhdpi_ic_launcher_monochrome.webp.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-xxxhdpi\\ic_launcher_monochrome.webp"
-    },
-    {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_fragment_dashboard.xml.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\fragment_dashboard.xml"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-hdpi\\ic_launcher.webp"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_fragment_settings.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\fragment_settings.xml"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
@@ -168,20 +328,12 @@
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\xml\\file_paths.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\navigation_nav_graph.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\navigation\\nav_graph.xml"
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_dot_red.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\dot_red.xml"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\menu_bottom_nav_menu.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\menu\\bottom_nav_menu.xml"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-xxhdpi\\ic_launcher.webp"
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_sheet_add_category.xml.flat",
@@ -192,36 +344,20 @@
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\item_budget.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable-xxxhdpi_ic_stat_micon.png.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable-xxxhdpi\\ic_stat_micon.png"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable-xxhdpi_ic_stat_micon.png.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable-xxhdpi\\ic_stat_micon.png"
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_nav_transactions.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_nav_transactions.xml"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_nav_transactions.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_nav_transactions.xml"
-    },
-    {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_export.xml.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_export.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_spinner_dark.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\spinner_dark.xml"
-    },
-    {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-xhdpi_ic_launcher_foreground.webp.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-xhdpi\\ic_launcher_foreground.webp"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_item_color_circle.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\item_color_circle.xml"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_layout_settings_categories.xml.flat",
@@ -236,48 +372,28 @@
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\chip_background.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable-xhdpi_ic_stat_micon.png.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable-xhdpi\\ic_stat_micon.png"
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_ic_splash_logo.png.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\ic_splash_logo.png"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
-    },
-    {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_layout_settings_transactions.xml.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\layout_settings_transactions.xml"
     },
     {
-        "merged": "com.mpesa.tracker.app-debug-80:/layout_fragment_settings.xml.flat",
-        "source": "com.mpesa.tracker.app-main-82:/layout/fragment_settings.xml"
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_chip_purple.xml.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\chip_purple.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_fragment_export.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\fragment_export.xml"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\color_nav_item_color.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\color\\nav_item_color.xml"
-    },
-    {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_fragment_analytics.xml.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\fragment_analytics.xml"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-xhdpi\\ic_launcher_round.webp"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_bg_metallic_circle.xml.flat",
@@ -286,10 +402,6 @@
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-mdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-mdpi\\ic_launcher.webp"
-    },
-    {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_dot_green.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\dot_green.xml"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable-mdpi_ic_stat_micon.png.flat",
@@ -304,20 +416,28 @@
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_bg_progress_horizontal.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\bg_progress_horizontal.xml"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-xxhdpi_ic_launcher_monochrome.webp.flat",
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-xxhdpi\\ic_launcher_monochrome.webp"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_fragment_transactions.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\fragment_transactions.xml"
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_item_analytics_table_row.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\item_analytics_table_row.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_dialog_edit_transaction.xml.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\dialog_edit_transaction.xml"
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\drawable_bg_chart_gradient.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\drawable\\bg_chart_gradient.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-xxhdpi_ic_launcher_monochrome.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-xxhdpi/ic_launcher_monochrome.webp"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_fragment_transactions.xml.flat",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\fragment_transactions.xml"
     },
     {
         "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\layout_sheet_add_exclusion.xml.flat",
@@ -328,7 +448,7 @@
         "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\layout\\layout_settings_appearance.xml"
     },
     {
-        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-debug-80:\\mipmap-xhdpi_ic_launcher_monochrome.webp.flat",
-        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\9.0.0\\com.mpesa.tracker.app-main-82:\\mipmap-xhdpi\\ic_launcher_monochrome.webp"
+        "merged": "com.mpesa.tracker.app-debug-80:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.mpesa.tracker.app-main-82:/mipmap-xxhdpi/ic_launcher.webp"
     }
 ]

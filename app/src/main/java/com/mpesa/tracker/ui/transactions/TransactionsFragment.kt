@@ -38,6 +38,7 @@ import com.mpesa.tracker.MpesaTrackerApp
 import com.mpesa.tracker.data.model.Transaction
 import com.mpesa.tracker.ui.components.TransactionEditSheet
 import com.mpesa.tracker.ui.components.TransactionItem
+import com.mpesa.tracker.ui.theme.MpesaTrackerTheme
 import com.mpesa.tracker.utils.ThemeManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -52,7 +53,16 @@ class TransactionsFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                MaterialTheme {
+                val context = LocalContext.current
+                val currentMode = remember { mutableStateOf(ThemeManager.getUiMode(context)) }
+
+                val isDark = when (currentMode.value) {
+                    ThemeManager.UiMode.DARK -> true
+                    ThemeManager.UiMode.LIGHT -> false
+                    ThemeManager.UiMode.FOLLOW_SYSTEM -> androidx.compose.foundation.isSystemInDarkTheme()
+                }
+
+                MpesaTrackerTheme(darkTheme = isDark) {
                     var editingTransaction by remember { mutableStateOf<Transaction?>(null) }
                     var showAddManual by remember { mutableStateOf(false) }
 
@@ -69,18 +79,9 @@ class TransactionsFragment : Fragment() {
                     )
 
                     if (showAddManual) {
-                        val context = LocalContext.current
-                        val currentMode = remember { mutableStateOf(ThemeManager.getUiMode(context)) }
-                        val isDark = when (currentMode.value) {
-                            ThemeManager.UiMode.DARK -> true
-                            ThemeManager.UiMode.LIGHT -> false
-                            ThemeManager.UiMode.FOLLOW_SYSTEM -> androidx.compose.foundation.isSystemInDarkTheme()
-                        }
-
                         TransactionEditSheet(
                             tx = null,
                             categories = dbCategories.map { it.name },
-                            isDark = isDark,
                             isManualEntry = true,
                             onSave = { manualTx ->
                                 viewModel.addManualTransaction(manualTx)
@@ -91,18 +92,9 @@ class TransactionsFragment : Fragment() {
                     }
 
                     editingTransaction?.let { tx ->
-                        val context = androidx.compose.ui.platform.LocalContext.current
-                        val currentMode = remember { mutableStateOf(ThemeManager.getUiMode(context)) }
-                        val isDark = when (currentMode.value) {
-                            ThemeManager.UiMode.DARK -> true
-                            ThemeManager.UiMode.LIGHT -> false
-                            ThemeManager.UiMode.FOLLOW_SYSTEM -> androidx.compose.foundation.isSystemInDarkTheme()
-                        }
-                        
                         TransactionEditSheet(
                             tx = tx,
                             categories = dbCategories.map { it.name },
-                            isDark = isDark,
                             onSave = { updated ->
                                 viewModel.updateTransaction(updated)
                                 if (updated.category != tx.category && !updated.recipient.isNullOrEmpty()) {
@@ -131,38 +123,24 @@ fun TransactionsScreen(
     var searchQuery by remember { mutableStateOf("") }
     var selectedCategory by remember { mutableStateOf("All") }
 
-    val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
-    
-    val currentMode = remember { mutableStateOf(ThemeManager.getUiMode(context)) }
-    val isDark = when (currentMode.value) {
-        ThemeManager.UiMode.DARK -> true
-        ThemeManager.UiMode.LIGHT -> false
-        ThemeManager.UiMode.FOLLOW_SYSTEM -> androidx.compose.foundation.isSystemInDarkTheme()
-    }
-
-    val bgColor = if (isDark) ComposeColor(0xFF0C0D11) else ComposeColor(0xFFF5F5F7)
-    val surfaceColor = if (isDark) ComposeColor(0xFF1A1C1E) else ComposeColor(0xFFFFFFFF)
-    val textColor = if (isDark) ComposeColor.White else ComposeColor.Black
-    val secondaryTextColor = if (isDark) ComposeColor(0xFF8890B0) else ComposeColor(0xFF6E6E73)
-    val borderColor = if (isDark) ComposeColor(0xFF2A2C32) else ComposeColor(0xFFE5E5EA)
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(bgColor)
+            .background(MaterialTheme.colorScheme.background)
     ) {
         // Header & Search
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(surfaceColor)
+                .background(MaterialTheme.colorScheme.surface)
                 .padding(top = 16.dp, bottom = 12.dp)
         ) {
             Text(
                 text = "Transactions",
-                color = textColor,
+                color = MaterialTheme.colorScheme.onSurface,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.ExtraBold,
                 modifier = Modifier.padding(horizontal = 20.dp)
@@ -177,22 +155,22 @@ fun TransactionsScreen(
                     searchQuery = it
                     viewModel.setSearchQuery(it)
                 },
-                placeholder = { Text("Search transactions...", color = secondaryTextColor) },
+                placeholder = { Text("Search transactions...", color = MaterialTheme.colorScheme.onSurfaceVariant) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 20.dp)
                     .height(56.dp),
                 shape = RoundedCornerShape(16.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = ComposeColor(0xFFFF9800),
-                    unfocusedBorderColor = borderColor,
-                    focusedContainerColor = bgColor,
-                    unfocusedContainerColor = bgColor,
-                    cursorColor = ComposeColor(0xFFFF9800),
-                    focusedTextColor = textColor,
-                    unfocusedTextColor = textColor
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
+                    focusedContainerColor = MaterialTheme.colorScheme.background,
+                    unfocusedContainerColor = MaterialTheme.colorScheme.background,
+                    cursorColor = MaterialTheme.colorScheme.primary,
+                    focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                    unfocusedTextColor = MaterialTheme.colorScheme.onSurface
                 ),
-                leadingIcon = { Icon(Icons.Default.Search, null, tint = secondaryTextColor) }
+                leadingIcon = { Icon(Icons.Default.Search, null, tint = MaterialTheme.colorScheme.onSurfaceVariant) }
             )
 
             Spacer(Modifier.height(16.dp))
@@ -207,12 +185,12 @@ fun TransactionsScreen(
                     Box(
                         modifier = Modifier
                             .background(
-                                if (isSelected) ComposeColor(0xFFFF9800) else (if (isDark) ComposeColor(0xFF232529) else ComposeColor(0xFFE5E5EA)),
+                                if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
                                 CircleShape
                             )
                             .border(
                                 1.dp,
-                                if (isSelected) ComposeColor(0xFFFF9800) else borderColor,
+                                if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant,
                                 CircleShape
                             )
                             .clickable {
@@ -223,7 +201,7 @@ fun TransactionsScreen(
                     ) {
                         Text(
                             text = category,
-                            color = if (isSelected) ComposeColor.Black else textColor,
+                            color = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface,
                             fontSize = 13.sp,
                             fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
                         )
@@ -244,7 +222,7 @@ fun TransactionsScreen(
                     Spacer(Modifier.height(16.dp))
                     Text(
                         "No transactions found",
-                        color = secondaryTextColor,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontSize = 16.sp
                     )
                 }
@@ -294,7 +272,7 @@ fun TransactionsScreen(
                                 val color by animateColorAsState(
                                     when (dismissState.targetValue) {
                                         SwipeToDismissBoxValue.Settled -> ComposeColor.Transparent
-                                        else -> ComposeColor(0xFFFF9800).copy(alpha = 0.2f)
+                                        else -> MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
                                     }, label = "background"
                                 )
                                 
@@ -309,15 +287,14 @@ fun TransactionsScreen(
                                     Icon(
                                         if (tx.isExcluded) Icons.Default.Add else Icons.Default.Block,
                                         contentDescription = null,
-                                        tint = ComposeColor(0xFFFF9800)
+                                        tint = MaterialTheme.colorScheme.primary
                                     )
                                 }
                             },
                             content = {
                                 TransactionItem(
                                     transaction = tx,
-                                    onClick = { onTransactionClick(tx) },
-                                    isDark = isDark
+                                    onClick = { onTransactionClick(tx) }
                                 )
                             }
                         )
@@ -333,8 +310,8 @@ fun TransactionsScreen(
             ) {
                 FloatingActionButton(
                     onClick = onAddManualClick,
-                    containerColor = ComposeColor(0xFFFF9800),
-                    contentColor = ComposeColor.White,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary,
                     shape = CircleShape,
                     modifier = Modifier.size(56.dp)
                 ) {
@@ -350,11 +327,11 @@ fun TransactionsScreen(
                         modifier = Modifier.padding(16.dp),
                         action = {
                             TextButton(onClick = { data.performAction() }) {
-                                Text(data.visuals.actionLabel ?: "", color = ComposeColor(0xFFFF9800))
+                                Text(data.visuals.actionLabel ?: "", color = MaterialTheme.colorScheme.primary)
                             }
                         },
-                        containerColor = surfaceColor,
-                        contentColor = textColor,
+                        containerColor = MaterialTheme.colorScheme.surface,
+                        contentColor = MaterialTheme.colorScheme.onSurface,
                         shape = RoundedCornerShape(12.dp)
                     ) {
                         Text(data.visuals.message)

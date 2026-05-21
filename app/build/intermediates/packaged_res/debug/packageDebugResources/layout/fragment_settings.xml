@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_navy_black">
+    android:background="?attr/colorSurface">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,13 +29,13 @@
                     android:text="Settings"
                     android:textSize="28sp"
                     android:textStyle="bold"
-                    android:textColor="@color/text_white"/>
+                    android:textColor="?attr/colorOnSurface"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Personalize your experience"
                     android:textSize="14sp"
-                    android:textColor="@color/text_gray_light"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:layout_marginTop="2dp"/>
             </LinearLayout>
 
@@ -45,7 +45,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:src="@android:drawable/ic_menu_search"
-                app:tint="@color/text_gray_light"
+                app:tint="?attr/colorOnSurfaceVariant"
                 android:alpha="0.6"/>
         </RelativeLayout>
 
@@ -110,11 +110,11 @@
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="@color/chevron_gray"/>
+                                app:tint="?attr/colorOnSurfaceVariant"/>
                         </LinearLayout>
 
                         <View android:layout_width="match_parent" android:layout_height="1dp"
-                            android:background="@color/divider_dark" android:layout_marginHorizontal="20dp"/>
+                            android:background="?attr/colorOutlineVariant" android:layout_marginHorizontal="20dp"/>
 
                         <!-- Transaction Controls -->
                         <LinearLayout
@@ -154,11 +154,11 @@
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="@color/chevron_gray"/>
+                                app:tint="?attr/colorOnSurfaceVariant"/>
                         </LinearLayout>
 
                         <View android:layout_width="match_parent" android:layout_height="1dp"
-                            android:background="@color/divider_dark" android:layout_marginHorizontal="20dp"/>
+                            android:background="?attr/colorOutlineVariant" android:layout_marginHorizontal="20dp"/>
 
                         <!-- Transaction Categories -->
                         <LinearLayout
@@ -195,11 +195,11 @@
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="@color/chevron_gray"/>
+                                app:tint="?attr/colorOnSurfaceVariant"/>
                         </LinearLayout>
 
                         <View android:layout_width="match_parent" android:layout_height="1dp"
-                            android:background="@color/divider_dark" android:layout_marginHorizontal="20dp"/>
+                            android:background="?attr/colorOutlineVariant" android:layout_marginHorizontal="20dp"/>
 
                         <!-- Privacy & Security -->
                         <LinearLayout
@@ -235,11 +235,11 @@
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="@color/chevron_gray"/>
+                                app:tint="?attr/colorOnSurfaceVariant"/>
                         </LinearLayout>
 
                         <View android:layout_width="match_parent" android:layout_height="1dp"
-                            android:background="@color/divider_dark" android:layout_marginHorizontal="20dp"/>
+                            android:background="?attr/colorOutlineVariant" android:layout_marginHorizontal="20dp"/>
 
                         <!-- General Preferences -->
                         <LinearLayout
@@ -275,11 +275,11 @@
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="@color/chevron_gray"/>
+                                app:tint="?attr/colorOnSurfaceVariant"/>
                         </LinearLayout>
 
                         <View android:layout_width="match_parent" android:layout_height="1dp"
-                            android:background="@color/divider_dark" android:layout_marginHorizontal="20dp"/>
+                            android:background="?attr/colorOutlineVariant" android:layout_marginHorizontal="20dp"/>
 
                         <!-- About & Support -->
                         <LinearLayout
@@ -315,7 +315,7 @@
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="@color/chevron_gray"/>
+                                app:tint="?attr/colorOnSurfaceVariant"/>
                         </LinearLayout>
 
                     </LinearLayout>

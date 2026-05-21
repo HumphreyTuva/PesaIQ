@@ -1,11 +1,13 @@
 package com.mpesa.tracker.ui.transactions
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.color.MaterialColors
 import com.mpesa.tracker.R
 import com.mpesa.tracker.data.model.Transaction
 import com.mpesa.tracker.data.model.TransactionType
@@ -55,23 +57,28 @@ class TransactionAdapter(
             val amountStr = if (tx.isExpense) "-Ksh %,.0f".format(tx.amount)
                             else "+Ksh %,.0f".format(tx.amount)
             b.tvAmount.text = amountStr
+            
+            val greenColor = MaterialColors.getColor(ctx, com.google.android.material.R.attr.colorPrimary, Color.GREEN)
+            val redColor = MaterialColors.getColor(ctx, com.google.android.material.R.attr.colorError, Color.RED)
+            
             b.tvAmount.setTextColor(
-                if (tx.isExpense) ContextCompat.getColor(ctx, R.color.expense_red)
-                else ContextCompat.getColor(ctx, R.color.income_green)
+                if (tx.isExpense) redColor
+                else greenColor
             )
 
-            // Icon background colour by type - updated for dark theme
-            val accentColor = when(tx.type) {
+            // Icon background colour by type - updated for dynamic theme
+            val typeColor = when(tx.type) {
                 TransactionType.RECEIVE   -> "#00E676"
                 TransactionType.SEND      -> "#FF9800"
                 TransactionType.PAYBILL   -> "#00BCD4"
                 TransactionType.BUY_GOODS -> "#9D4EDD"
                 TransactionType.WITHDRAW  -> "#ADB5BD"
                 TransactionType.AIRTIME   -> "#03A9F4"
-                else -> "#FFFFFF"
+                else -> "#888888"
             }
-            b.cardTypeIcon.strokeColor = android.graphics.Color.parseColor(accentColor)
-            b.cardTypeIcon.setCardBackgroundColor(android.graphics.Color.parseColor("#1A" + accentColor.removePrefix("#")))
+            val parsedColor = Color.parseColor(typeColor)
+            b.cardTypeIcon.strokeColor = parsedColor
+            b.cardTypeIcon.setCardBackgroundColor(ColorUtils.setAlphaComponent(parsedColor, 26)) // ~10% alpha
 
             // Visual feedback for excluded transactions
             if (tx.isExcluded) {

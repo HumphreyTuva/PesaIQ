@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="@color/bg_dark_card">
+    android:background="?attr/colorSurface">
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,7 +13,7 @@
         android:text="Add Category"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/text_white"
+        android:textColor="?attr/colorOnSurface"
         android:layout_marginBottom="8dp"/>
 
     <TextView
@@ -21,17 +21,15 @@
         android:layout_height="wrap_content"
         android:text="Enter a name for the new transaction category."
         android:textSize="14sp"
-        android:textColor="@color/text_gray_light"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:layout_marginBottom="24dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_category_name"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Category Name"
-        app:hintTextColor="@color/brand_orange"
-        app:boxStrokeColor="@color/brand_orange"
         app:placeholderText="e.g. Subscriptions">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -39,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapWords"
-            android:textColor="@color/text_white" />
+            android:textColor="?attr/colorOnSurface" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
@@ -51,20 +49,21 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_cancel"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+            style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancel"
-            android:textColor="@color/text_gray_light"
+            android:textColor="?attr/colorOnSurfaceVariant"
             android:layout_marginEnd="8dp"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_save"
+            style="@style/Widget.Material3.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save Category"
-            android:backgroundTint="@color/brand_orange"
             app:cornerRadius="8dp"/>
     </LinearLayout>
+
 
 </LinearLayout>

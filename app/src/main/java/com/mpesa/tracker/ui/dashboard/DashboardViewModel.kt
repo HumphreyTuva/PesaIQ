@@ -45,7 +45,7 @@ class DashboardViewModel(private val repo: TransactionRepository) : ViewModel() 
             combine(
                 repo.getTotalIncome(start, end),
                 repo.getTotalExpenses(start, end),
-                repo.getRecentTransactions(10),
+                repo.getRecentTransactions(500),
                 repo.getExpensesByCategory(start, end),
                 repo.getTotalBudgetForMonth(month, year)
             ) { income, expenses, recent, categories, budgetLimit ->

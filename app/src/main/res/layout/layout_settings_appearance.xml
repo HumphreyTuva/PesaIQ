@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="@color/bg_dark_card">
+    android:background="?attr/colorSurface">
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,7 +13,7 @@
         android:text="Appearance &amp; Display"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/text_white"
+        android:textColor="?attr/colorOnSurface"
         android:layout_marginBottom="24dp"/>
 
     <!-- Accent color label -->
@@ -29,16 +29,15 @@
             android:text="Accent Color"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="@color/text_white"/>
+            android:textColor="?attr/colorOnSurface"/>
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_custom_color"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:text="Custom #HEX"
-            android:textColor="@color/brand_orange"
-            app:strokeColor="@color/brand_orange"
             android:textSize="12sp"/>
+
     </LinearLayout>
 
     <TextView
@@ -46,7 +45,7 @@
         android:layout_height="wrap_content"
         android:text="Choose a preset or enter any hex code"
         android:textSize="12sp"
-        android:textColor="@color/text_gray_light"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:layout_marginBottom="14dp"/>
 
     <HorizontalScrollView
@@ -61,7 +60,7 @@
     </HorizontalScrollView>
 
     <View android:layout_width="match_parent" android:layout_height="1dp"
-        android:background="@color/divider_dark" android:layout_marginTop="20dp" android:layout_marginBottom="20dp"/>
+        android:background="?attr/colorOutlineVariant" android:layout_marginTop="20dp" android:layout_marginBottom="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -69,7 +68,7 @@
         android:text="Font Style"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:textColor="@color/text_white"/>
+        android:textColor="?attr/colorOnSurface"/>
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/font_chip_group"
         android:layout_width="match_parent"
@@ -77,7 +76,7 @@
         android:layout_marginTop="8dp"/>
 
     <View android:layout_width="match_parent" android:layout_height="1dp"
-        android:background="@color/divider_dark" android:layout_marginTop="20dp" android:layout_marginBottom="20dp"/>
+        android:background="?attr/colorOutlineVariant" android:layout_marginTop="20dp" android:layout_marginBottom="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -85,7 +84,7 @@
         android:text="Theme Mode"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:textColor="@color/text_white"/>
+        android:textColor="?attr/colorOnSurface"/>
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/theme_chip_group"
         android:layout_width="match_parent"

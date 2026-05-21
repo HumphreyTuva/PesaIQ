@@ -80,12 +80,11 @@ fun SoftActionButton(
     text: String,
     accentColor: Color,
     modifier: Modifier = Modifier,
-    isDark: Boolean = true,
     icon: (@Composable () -> Unit)? = null,
     onClick: () -> Unit
 ) {
-    val containerColor = if (isDark) Color(0xFF232529).copy(alpha = 0.8f) else Color.White
-    val textColor = if (isDark) Color.White.copy(alpha = 0.9f) else Color.Black.copy(alpha = 0.8f)
+    val containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.8f)
+    val textColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.9f)
     
     Surface(
         onClick = onClick,
@@ -129,15 +128,14 @@ fun SpendingOverviewCard(
     remainingDays: Int,
     balance: Double,
     monthlyLimit: Double,
-    modifier: Modifier = Modifier,
-    isDark: Boolean = true
+    modifier: Modifier = Modifier
 ) {
     val progress = (kotlin.math.abs(balance) / monthlyLimit.coerceAtLeast(1.0)).toFloat().coerceIn(0f, 1f)
-    val surfaceColor = if (isDark) Color(0xFF1A1C1E) else Color.White
-    val textColor = if (isDark) Color.White else Color.Black
-    val secondaryTextColor = if (isDark) ColorTextSecondaryDark else ColorTextSecondaryLight
-    val borderColor = if (isDark) Color(0xFF2A2D32) else Color(0xFFE5E5EA)
-    val trackColor = if (isDark) Color(0xFF222428) else Color(0xFFF2F2F7)
+    val surfaceColor = MaterialTheme.colorScheme.surface
+    val textColor = MaterialTheme.colorScheme.onSurface
+    val secondaryTextColor = MaterialTheme.colorScheme.onSurfaceVariant
+    val borderColor = MaterialTheme.colorScheme.outlineVariant
+    val trackColor = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
 
     Box(
         modifier = modifier
@@ -166,7 +164,7 @@ fun SpendingOverviewCard(
                     Canvas(modifier = Modifier.fillMaxSize()) {
                         // Outer Ring Glow
                         drawCircle(
-                            color = Color.Black.copy(alpha = if (isDark) 0.6f else 0.1f),
+                            color = Color.Black.copy(alpha = 0.1f),
                             radius = size.minDimension / 2,
                             style = Stroke(width = 2.dp.toPx())
                         )
@@ -186,7 +184,7 @@ fun SpendingOverviewCard(
                     CircularProgressIndicator(
                         progress = { progress },
                         modifier = Modifier.size(60.dp),
-                        color = ColorAccent,
+                        color = MaterialTheme.colorScheme.primary,
                         trackColor = trackColor,
                         strokeWidth = 6.dp,
                         strokeCap = StrokeCap.Round
@@ -321,10 +319,9 @@ private fun MetallicClamp(modifier: Modifier, isTop: Boolean) {
 fun GradientEdgeCard(
     colors: List<Color>,
     modifier: Modifier = Modifier,
-    isDark: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val surfaceColor = if (isDark) Color(0xFF1A1C1E) else Color.White
+    val surfaceColor = MaterialTheme.colorScheme.surface
 
     // 1. Outer Box: Holds the gradient and defines the overall 20dp shape
     Box(
@@ -452,7 +449,6 @@ fun MPesaBalanceCard() {
 fun TransactionEditSheet(
     tx: Transaction?,
     categories: List<String>,
-    isDark: Boolean = true,
     isManualEntry: Boolean = false,
     onSave: (Transaction) -> Unit,
     onDismiss: () -> Unit
@@ -464,10 +460,10 @@ fun TransactionEditSheet(
     var isExcluded by remember { mutableStateOf(tx?.isExcluded ?: false) }
     var transactionType by remember { mutableStateOf(tx?.type ?: TransactionType.SEND) }
 
-    val surfaceColor = if (isDark) Color(0xFF1A1C1E) else Color.White
-    val textColor = if (isDark) Color.White else Color.Black
-    val secondaryTextColor = if (isDark) ColorTextSecondaryDark else ColorTextSecondaryLight
-    val borderColor = if (isDark) Color(0xFF2A2C32) else Color(0xFFE5E5EA)
+    val surfaceColor = MaterialTheme.colorScheme.surface
+    val textColor = MaterialTheme.colorScheme.onSurface
+    val secondaryTextColor = MaterialTheme.colorScheme.onSurfaceVariant
+    val borderColor = MaterialTheme.colorScheme.outlineVariant
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
@@ -501,14 +497,14 @@ fun TransactionEditSheet(
                         Box(
                             modifier = Modifier
                                 .weight(1f)
-                                .background(if (isSelected) ColorAccent else (if (isDark) Color(0xFF232529) else Color(0xFFF2F2F7)), RoundedCornerShape(12.dp))
+                                .background(if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f), RoundedCornerShape(12.dp))
                                 .clickable { transactionType = type }
                                 .padding(vertical = 12.dp),
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
                                 label,
-                                color = if (isSelected) Color.Black else textColor,
+                                color = if (isSelected) MaterialTheme.colorScheme.onPrimary else textColor,
                                 fontSize = 14.sp,
                                 fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
                             )
@@ -528,7 +524,7 @@ fun TransactionEditSheet(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedTextColor = textColor,
                     unfocusedTextColor = textColor,
-                    focusedBorderColor = ColorAccent,
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
                     unfocusedBorderColor = borderColor
                 )
             )
@@ -544,7 +540,7 @@ fun TransactionEditSheet(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedTextColor = textColor,
                     unfocusedTextColor = textColor,
-                    focusedBorderColor = ColorAccent,
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
                     unfocusedBorderColor = borderColor
                 )
             )
@@ -559,13 +555,13 @@ fun TransactionEditSheet(
                     val isSelected = cat == selectedCategory
                     Box(
                         modifier = Modifier
-                            .background(if (isSelected) ColorAccent else (if (isDark) Color(0xFF232529) else Color(0xFFF2F2F7)), CircleShape)
+                            .background(if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f), CircleShape)
                             .clickable { selectedCategory = cat }
                             .padding(horizontal = 14.dp, vertical = 6.dp)
                     ) {
                         Text(
                             cat,
-                            color = if (isSelected) Color.Black else textColor,
+                            color = if (isSelected) MaterialTheme.colorScheme.onPrimary else textColor,
                             fontSize = 12.sp,
                             fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
                         )
@@ -585,7 +581,7 @@ fun TransactionEditSheet(
                     Switch(
                         checked = isExcluded,
                         onCheckedChange = { isExcluded = it },
-                        colors = SwitchDefaults.colors(checkedThumbColor = ColorAccent)
+                        colors = SwitchDefaults.colors(checkedThumbColor = MaterialTheme.colorScheme.primary)
                     )
                 }
                 Spacer(Modifier.height(32.dp))
@@ -621,10 +617,10 @@ fun TransactionEditSheet(
                     }
                 },
                 modifier = Modifier.fillMaxWidth().height(54.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = ColorAccent),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                 shape = RoundedCornerShape(12.dp)
             ) {
-                Text(if (isManualEntry) "Add Transaction" else "Save Changes", color = Color.Black, fontWeight = FontWeight.Bold)
+                Text(if (isManualEntry) "Add Transaction" else "Save Changes", color = MaterialTheme.colorScheme.onPrimary, fontWeight = FontWeight.Bold)
             }
         }
     }
