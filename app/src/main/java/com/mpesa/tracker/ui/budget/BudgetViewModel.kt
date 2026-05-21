@@ -5,6 +5,7 @@ import com.mpesa.tracker.data.model.Budget
 import com.mpesa.tracker.data.model.BudgetWithSpent
 import com.mpesa.tracker.data.repository.TransactionRepository
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.util.Calendar
 
@@ -26,11 +27,15 @@ class BudgetViewModel(private val repo: TransactionRepository) : ViewModel() {
         ) { budgetList, transactionList ->
             budgetList.map { budget ->
                 val spent = transactionList
-                    .filter { it.category == budget.category && it.isExpense }
+                    .filter { it.category == budget.category && it.isExpense && !it.isExcluded }
                     .sumOf { it.amount }
                 BudgetWithSpent(budget, spent)
             }
         }.asLiveData()
+
+    val availableCategories: LiveData<List<String>> = repo.getAllCategories().map { list ->
+        list.map { it.name }
+    }.asLiveData()
 
     fun addBudget(category: String, limit: Double) {
         viewModelScope.launch {
@@ -53,12 +58,6 @@ class BudgetViewModel(private val repo: TransactionRepository) : ViewModel() {
     fun deleteBudget(budget: Budget) {
         viewModelScope.launch { repo.deleteBudget(budget) }
     }
-
-    val availableCategories = listOf(
-        "Groceries", "Utilities", "Transport", "Food & Dining",
-        "Airtime", "Entertainment", "Health", "Education",
-        "Transfer", "Withdrawal", "Other"
-    )
 }
 
 class BudgetViewModelFactory(private val repo: TransactionRepository) :

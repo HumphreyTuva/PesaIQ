@@ -16,7 +16,11 @@ import com.mpesa.tracker.MpesaTrackerApp
 import com.mpesa.tracker.R
 import com.mpesa.tracker.data.model.ExclusionRule
 import com.mpesa.tracker.databinding.FragmentSettingsBinding
+import com.mpesa.tracker.databinding.LayoutSettingsAppearanceBinding
 import com.mpesa.tracker.databinding.SheetAddExclusionBinding
+import com.mpesa.tracker.databinding.LayoutSettingsTransactionsBinding
+import com.mpesa.tracker.databinding.LayoutSettingsCategoriesBinding
+import com.mpesa.tracker.databinding.SheetAddCategoryBinding
 import com.mpesa.tracker.ui.MainActivity
 import com.mpesa.tracker.utils.ThemeManager
 
@@ -30,6 +34,7 @@ class SettingsFragment : Fragment() {
     }
 
     private lateinit var exclusionAdapter: ExclusionRuleAdapter
+    private lateinit var categoryAdapter: CategoryAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -40,14 +45,112 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupColorPicker()
-        setupFontPicker()
-        setupThemePicker()
-        setupExclusionList()
-        observeExclusionRules()
+        
+        binding.itemAppearance.setOnClickListener { showAppearanceSheet() }
+        binding.itemTransactions.setOnClickListener { showTransactionControlsSheet() }
+        binding.itemCategories.setOnClickListener { showCategoriesSheet() }
     }
 
-    private fun setupThemePicker() {
+    private fun showCategoriesSheet() {
+        val sheet = BottomSheetDialog(requireContext(), R.style.Theme_MpesaTracker_BottomSheet)
+        val sheetBinding = LayoutSettingsCategoriesBinding.inflate(layoutInflater)
+        sheet.setContentView(sheetBinding.root)
+
+        categoryAdapter = CategoryAdapter(
+            onDelete = { category ->
+                if (category.isDefault) {
+                    Toast.makeText(requireContext(), "Default categories cannot be deleted", Toast.LENGTH_SHORT).show()
+                } else {
+                    MaterialAlertDialogBuilder(requireContext())
+                        .setTitle("Delete Category?")
+                        .setMessage("Transactions in \"${category.name}\" will keep their category name but the category will be removed from the list.")
+                        .setPositiveButton("Delete") { _, _ -> viewModel.deleteCategory(category) }
+                        .setNegativeButton("Cancel", null)
+                        .show()
+                }
+            }
+        )
+
+        sheetBinding.rvCategories.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = categoryAdapter
+        }
+
+        viewModel.categories.observe(viewLifecycleOwner) { categories ->
+            categoryAdapter.submitList(categories)
+        }
+
+        sheetBinding.fabAddCategory.setOnClickListener { showAddCategorySheet() }
+
+        sheet.show()
+    }
+
+    private fun showAddCategorySheet() {
+        val sheet = BottomSheetDialog(requireContext(), R.style.Theme_MpesaTracker_BottomSheet)
+        val sheetBinding = SheetAddCategoryBinding.inflate(layoutInflater)
+        sheet.setContentView(sheetBinding.root)
+
+        sheetBinding.btnCancel.setOnClickListener { sheet.dismiss() }
+
+        sheetBinding.btnSave.setOnClickListener {
+            val name = sheetBinding.etCategoryName.text?.toString()?.trim() ?: ""
+            if (name.isBlank()) {
+                sheetBinding.tilCategoryName.error = "Enter a name"
+                return@setOnClickListener
+            }
+            viewModel.addCategory(name)
+            Toast.makeText(requireContext(), "Category \"$name\" added ✓", Toast.LENGTH_SHORT).show()
+            sheet.dismiss()
+        }
+
+        sheet.show()
+    }
+
+    private fun showAppearanceSheet() {
+        val sheet = BottomSheetDialog(requireContext(), R.style.Theme_MpesaTracker_BottomSheet)
+        val sheetBinding = LayoutSettingsAppearanceBinding.inflate(layoutInflater)
+        sheet.setContentView(sheetBinding.root)
+
+        setupColorPicker(sheetBinding)
+        setupFontPicker(sheetBinding)
+        setupThemePicker(sheetBinding)
+
+        sheet.show()
+    }
+
+    private fun showTransactionControlsSheet() {
+        val sheet = BottomSheetDialog(requireContext(), R.style.Theme_MpesaTracker_BottomSheet)
+        val sheetBinding = LayoutSettingsTransactionsBinding.inflate(layoutInflater)
+        sheet.setContentView(sheetBinding.root)
+
+        exclusionAdapter = ExclusionRuleAdapter(
+            onToggle = { rule, enabled -> viewModel.toggleRule(rule, enabled) },
+            onDelete = { rule ->
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Remove rule?")
+                    .setMessage("\"${rule.keyword}\" will no longer be excluded.")
+                    .setPositiveButton("Remove") { _, _ -> viewModel.deleteRule(rule) }
+                    .setNegativeButton("Cancel", null)
+                    .show()
+            }
+        )
+        
+        sheetBinding.rvExclusions.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = exclusionAdapter
+        }
+
+        viewModel.exclusionRules.observe(viewLifecycleOwner) { rules ->
+            exclusionAdapter.submitList(rules)
+            sheetBinding.tvNoExclusions.visibility = if (rules.isEmpty()) View.VISIBLE else View.GONE
+        }
+
+        sheetBinding.fabAddExclusion.setOnClickListener { showAddExclusionSheet() }
+
+        sheet.show()
+    }
+
+    private fun setupThemePicker(sheetBinding: LayoutSettingsAppearanceBinding) {
         val current = ThemeManager.getUiMode(requireContext())
 
         ThemeManager.UiMode.values().forEach { mode ->
@@ -55,7 +158,6 @@ class SettingsFragment : Fragment() {
                 text = mode.displayName
                 isCheckable = true
                 isChecked = mode == current
-                // Consistent styling with font chips
                 chipBackgroundColor = resources.getColorStateList(R.color.chip_bg_selector, null)
                 setTextColor(resources.getColorStateList(R.color.chip_text_selector, null))
                 chipStrokeWidth = 1f
@@ -65,18 +167,16 @@ class SettingsFragment : Fragment() {
                 ThemeManager.setUiMode(requireContext(), mode)
                 Toast.makeText(requireContext(), "${mode.displayName} theme applied ✓", Toast.LENGTH_SHORT).show()
             }
-            binding.themeChipGroup.addView(chip)
+            sheetBinding.themeChipGroup.addView(chip)
         }
     }
 
-    // ── Color picker ──────────────────────────────────────────────────────────
-
-    private fun setupColorPicker() {
+    private fun setupColorPicker(sheetBinding: LayoutSettingsAppearanceBinding) {
         val currentColor = ThemeManager.getAccentColor(requireContext())
 
         ThemeManager.PRESETS.forEach { preset ->
             val circle = layoutInflater.inflate(
-                R.layout.item_color_circle, binding.colorPickerRow, false
+                R.layout.item_color_circle, sheetBinding.colorPickerRow, false
             )
             val colorView  = circle.findViewById<View>(R.id.view_color)
             val checkmark  = circle.findViewById<View>(R.id.view_check)
@@ -85,14 +185,12 @@ class SettingsFragment : Fragment() {
             checkmark.visibility = if (preset.color == currentColor) View.VISIBLE else View.GONE
 
             circle.setOnClickListener {
-                // Deselect all
-                for (i in 0 until binding.colorPickerRow.childCount) {
-                    binding.colorPickerRow.getChildAt(i)
+                for (i in 0 until sheetBinding.colorPickerRow.childCount) {
+                    sheetBinding.colorPickerRow.getChildAt(i)
                         .findViewById<View>(R.id.view_check)?.visibility = View.GONE
                 }
                 checkmark.visibility = View.VISIBLE
 
-                // Save + apply immediately
                 ThemeManager.setAccentColor(requireContext(), preset.hex)
                 ThemeManager.applyToRoot(requireContext(), requireActivity().window.decorView)
                 (activity as? MainActivity)?.refreshTheme()
@@ -100,11 +198,10 @@ class SettingsFragment : Fragment() {
                 Toast.makeText(requireContext(), "${preset.name} applied ✓", Toast.LENGTH_SHORT).show()
             }
 
-            binding.colorPickerRow.addView(circle)
+            sheetBinding.colorPickerRow.addView(circle)
         }
 
-        // Custom color hex input
-        binding.btnCustomColor.setOnClickListener { showCustomColorDialog() }
+        sheetBinding.btnCustomColor.setOnClickListener { showCustomColorDialog() }
     }
 
     private fun showCustomColorDialog() {
@@ -143,9 +240,7 @@ class SettingsFragment : Fragment() {
         sheet.show()
     }
 
-    // ── Font picker ───────────────────────────────────────────────────────────
-
-    private fun setupFontPicker() {
+    private fun setupFontPicker(sheetBinding: LayoutSettingsAppearanceBinding) {
         val current = ThemeManager.getFontStyle(requireContext())
 
         ThemeManager.FontStyle.values().forEach { style ->
@@ -159,8 +254,8 @@ class SettingsFragment : Fragment() {
                 chipStrokeColor = resources.getColorStateList(R.color.chip_stroke_selector, null)
             }
             chip.setOnClickListener {
-                for (i in 0 until binding.fontChipGroup.childCount)
-                    (binding.fontChipGroup.getChildAt(i) as? com.google.android.material.chip.Chip)
+                for (i in 0 until sheetBinding.fontChipGroup.childCount)
+                    (sheetBinding.fontChipGroup.getChildAt(i) as? com.google.android.material.chip.Chip)
                         ?.isChecked = false
                 chip.isChecked = true
 
@@ -168,37 +263,7 @@ class SettingsFragment : Fragment() {
                 ThemeManager.applyToRoot(requireContext(), requireActivity().window.decorView)
                 Toast.makeText(requireContext(), "${style.displayName} font applied ✓", Toast.LENGTH_SHORT).show()
             }
-            binding.fontChipGroup.addView(chip)
-        }
-    }
-
-    // ── Exclusion rules ───────────────────────────────────────────────────────
-
-    private fun setupExclusionList() {
-        exclusionAdapter = ExclusionRuleAdapter(
-            onToggle = { rule, enabled -> viewModel.toggleRule(rule, enabled) },
-            onDelete = { rule ->
-                MaterialAlertDialogBuilder(requireContext())
-                    .setTitle("Remove rule?")
-                    .setMessage("\"${rule.keyword}\" will no longer be excluded.")
-                    .setPositiveButton("Remove") { _, _ -> viewModel.deleteRule(rule) }
-                    .setNegativeButton("Cancel", null)
-                    .show()
-            }
-        )
-        binding.rvExclusions.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = exclusionAdapter
-            isNestedScrollingEnabled = false
-        }
-
-        binding.fabAddExclusion.setOnClickListener { showAddExclusionSheet() }
-    }
-
-    private fun observeExclusionRules() {
-        viewModel.exclusionRules.observe(viewLifecycleOwner) { rules ->
-            exclusionAdapter.submitList(rules)
-            binding.tvNoExclusions.visibility = if (rules.isEmpty()) View.VISIBLE else View.GONE
+            sheetBinding.fontChipGroup.addView(chip)
         }
     }
 
@@ -209,7 +274,6 @@ class SettingsFragment : Fragment() {
 
         var selectedMatchType = ExclusionRule.MatchType.CONTAINS
 
-        // Match type chip group
         val chips = mapOf(
             sheetBinding.chipContains   to ExclusionRule.MatchType.CONTAINS,
             sheetBinding.chipExact      to ExclusionRule.MatchType.EXACT,

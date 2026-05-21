@@ -8,6 +8,7 @@ import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.mpesa.tracker.data.model.Budget
+import com.mpesa.tracker.data.model.Category
 import com.mpesa.tracker.data.model.CategoryMapping
 import com.mpesa.tracker.data.model.CategoryRule
 import com.mpesa.tracker.data.model.ExclusionRule
@@ -19,9 +20,10 @@ import com.mpesa.tracker.data.model.Transaction
         Budget::class,
         CategoryMapping::class,
         CategoryRule::class,
-        ExclusionRule::class
+        ExclusionRule::class,
+        Category::class
     ],
-    version = 5,
+    version = 6,
     exportSchema = false
 )
 @TypeConverters(Converters::class, ExclusionConverters::class)
@@ -32,6 +34,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun categoryMappingDao(): CategoryMappingDao
     abstract fun categoryRuleDao(): CategoryRuleDao
     abstract fun exclusionRuleDao(): ExclusionRuleDao
+    abstract fun categoryDao(): CategoryDao
 
     companion object {
         @Volatile
@@ -84,10 +87,38 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
-        // v4 → v5 : adds isExcluded column to transactions
+        // v4 → v5 : adds category_mappings table
         private val MIGRATION_4_5 = object : Migration(4, 5) {
             override fun migrate(db: SupportSQLiteDatabase) {
-                db.execSQL("ALTER TABLE transactions ADD COLUMN isExcluded INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("""
+                    CREATE TABLE IF NOT EXISTS `category_mappings` (
+                        `searchText` TEXT NOT NULL,
+                        `category` TEXT NOT NULL,
+                        PRIMARY KEY(`searchText`)
+                    )
+                """.trimIndent())
+            }
+        }
+
+        // v5 → v6 : adds categories table + seeds default categories
+        private val MIGRATION_5_6 = object : Migration(5, 6) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("""
+                    CREATE TABLE IF NOT EXISTS `categories` (
+                        `name` TEXT NOT NULL,
+                        `isDefault` INTEGER NOT NULL DEFAULT 0,
+                        PRIMARY KEY(`name`)
+                    )
+                """.trimIndent())
+
+                val defaults = listOf(
+                    "Groceries", "Utilities", "Transport", "Food & Dining",
+                    "Airtime", "Entertainment", "Health", "Education",
+                    "Transfer", "Withdrawal", "Other"
+                )
+                defaults.forEach { name ->
+                    db.execSQL("INSERT OR IGNORE INTO categories (name, isDefault) VALUES ('$name', 1)")
+                }
             }
         }
 
@@ -98,7 +129,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "mpesa_tracker.db"
                 )
-                    .addMigrations(MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
+                    .addMigrations(MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
                     .build()
                 INSTANCE = instance
                 instance

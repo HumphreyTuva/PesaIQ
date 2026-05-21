@@ -338,7 +338,7 @@ fun DashboardScreen(
                     }
                 }
             }
-            
+
             if (state?.isLoading == true) {
                 Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = ComposeColor(0xFFFF9800))

@@ -31,6 +31,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.ui.text.input.KeyboardType
 import com.mpesa.tracker.data.model.Transaction
 import com.mpesa.tracker.data.model.TransactionType
 val SafaricomGreen = Color(0xFF25D366) // Vibrant neon green
@@ -53,7 +57,7 @@ fun Modifier.gradientSideAccent(
 ) = this.drawBehind {
     val sw = strokeWidth.toPx()
     val cr = cornerRadius.toPx()
-    
+
     val path = Path().apply {
         moveTo(cr, 0f)
         arcTo(Rect(0f, 0f, cr * 2, cr * 2), 270f, -90f, false)
@@ -166,7 +170,7 @@ fun SpendingOverviewCard(
                             radius = size.minDimension / 2,
                             style = Stroke(width = 2.dp.toPx())
                         )
-                        
+
                         // Metallic Outer Ring
                         drawCircle(
                             brush = Brush.sweepGradient(
@@ -446,17 +450,19 @@ fun MPesaBalanceCard() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TransactionEditSheet(
-    tx: Transaction,
+    tx: Transaction?,
     categories: List<String>,
     isDark: Boolean = true,
+    isManualEntry: Boolean = false,
     onSave: (Transaction) -> Unit,
     onDismiss: () -> Unit
 ) {
-    var amount by remember { mutableStateOf(tx.amount.toString()) }
-    var recipient by remember { mutableStateOf(tx.recipient ?: tx.phone ?: "") }
-    var note by remember { mutableStateOf(tx.note ?: "") }
-    var selectedCategory by remember { mutableStateOf(tx.category) }
-    var isExcluded by remember { mutableStateOf(tx.isExcluded) }
+    var amount by remember { mutableStateOf(tx?.amount?.toString() ?: "") }
+    var recipient by remember { mutableStateOf(tx?.recipient ?: tx?.phone ?: "") }
+    var note by remember { mutableStateOf(tx?.note ?: "") }
+    var selectedCategory by remember { mutableStateOf(tx?.category ?: "Other") }
+    var isExcluded by remember { mutableStateOf(tx?.isExcluded ?: false) }
+    var transactionType by remember { mutableStateOf(tx?.type ?: TransactionType.SEND) }
 
     val surfaceColor = if (isDark) Color(0xFF1A1C1E) else Color.White
     val textColor = if (isDark) Color.White else Color.Black
@@ -473,9 +479,10 @@ fun TransactionEditSheet(
                 .padding(horizontal = 24.dp)
                 .padding(bottom = 40.dp)
                 .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
         ) {
             Text(
-                "Edit Transaction",
+                if (isManualEntry) "Add Cash Transaction" else "Edit Transaction",
                 color = textColor,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
@@ -483,12 +490,41 @@ fun TransactionEditSheet(
             
             Spacer(Modifier.height(24.dp))
 
+            if (isManualEntry) {
+                Text("Type", color = secondaryTextColor, fontSize = 12.sp)
+                Spacer(Modifier.height(8.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    val types = listOf(TransactionType.SEND, TransactionType.RECEIVE)
+                    types.forEach { type ->
+                        val isSelected = transactionType == type
+                        val label = if (type == TransactionType.SEND) "Expense" else "Income"
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .background(if (isSelected) ColorAccent else (if (isDark) Color(0xFF232529) else Color(0xFFF2F2F7)), RoundedCornerShape(12.dp))
+                                .clickable { transactionType = type }
+                                .padding(vertical = 12.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                label,
+                                color = if (isSelected) Color.Black else textColor,
+                                fontSize = 14.sp,
+                                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
+                            )
+                        }
+                    }
+                }
+                Spacer(Modifier.height(16.dp))
+            }
+
             // Amount Field
             OutlinedTextField(
                 value = amount,
                 onValueChange = { amount = it },
                 label = { Text("Amount (Ksh)", color = secondaryTextColor) },
                 modifier = Modifier.fillMaxWidth(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedTextColor = textColor,
                     unfocusedTextColor = textColor,
@@ -503,7 +539,7 @@ fun TransactionEditSheet(
             OutlinedTextField(
                 value = recipient,
                 onValueChange = { recipient = it },
-                label = { Text("Recipient / Sender", color = secondaryTextColor) },
+                label = { Text(if (transactionType.isExpense) "Recipient / Business" else "Sender / Source", color = secondaryTextColor) },
                 modifier = Modifier.fillMaxWidth(),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedTextColor = textColor,
@@ -528,7 +564,7 @@ fun TransactionEditSheet(
                             .padding(horizontal = 14.dp, vertical = 6.dp)
                     ) {
                         Text(
-                            cat, 
+                            cat,
                             color = if (isSelected) Color.Black else textColor,
                             fontSize = 12.sp,
                             fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
@@ -539,36 +575,56 @@ fun TransactionEditSheet(
 
             Spacer(Modifier.height(24.dp))
 
-            // Exclude Toggle
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Exclude from calculations", color = textColor, modifier = Modifier.weight(1f))
-                Switch(
-                    checked = isExcluded,
-                    onCheckedChange = { isExcluded = it },
-                    colors = SwitchDefaults.colors(checkedThumbColor = ColorAccent)
-                )
+            if (!isManualEntry) {
+                // Exclude Toggle
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Exclude from calculations", color = textColor, modifier = Modifier.weight(1f))
+                    Switch(
+                        checked = isExcluded,
+                        onCheckedChange = { isExcluded = it },
+                        colors = SwitchDefaults.colors(checkedThumbColor = ColorAccent)
+                    )
+                }
+                Spacer(Modifier.height(32.dp))
+            } else {
+                Spacer(Modifier.height(16.dp))
             }
-
-            Spacer(Modifier.height(32.dp))
 
             Button(
                 onClick = {
-                    onSave(tx.copy(
-                        amount = amount.toDoubleOrNull() ?: tx.amount,
-                        recipient = recipient,
-                        category = selectedCategory,
-                        note = note,
-                        isExcluded = isExcluded
-                    ))
+                    val amt = amount.toDoubleOrNull() ?: 0.0
+                    if (amt <= 0) return@Button
+                    
+                    if (isManualEntry) {
+                        onSave(Transaction(
+                            transactionId = "CASH-${System.currentTimeMillis()}",
+                            type = transactionType,
+                            amount = amt,
+                            recipient = recipient.ifBlank { "Cash Transaction" },
+                            category = selectedCategory,
+                            note = note,
+                            rawSms = "Manual entry",
+                            timestamp = System.currentTimeMillis(),
+                            isManual = true
+                        ))
+                    } else {
+                        onSave(tx!!.copy(
+                            amount = amt,
+                            recipient = recipient,
+                            category = selectedCategory,
+                            note = note,
+                            isExcluded = isExcluded
+                        ))
+                    }
                 },
                 modifier = Modifier.fillMaxWidth().height(54.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = ColorAccent),
                 shape = RoundedCornerShape(12.dp)
             ) {
-                Text("Save Changes", color = Color.Black, fontWeight = FontWeight.Bold)
+                Text(if (isManualEntry) "Add Transaction" else "Save Changes", color = Color.Black, fontWeight = FontWeight.Bold)
             }
         }
     }

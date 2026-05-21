@@ -84,91 +84,107 @@ fun BudgetScreen(viewModel: BudgetViewModel) {
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = { showAddSheet = true },
-                containerColor = ComposeColor(0xFFFF9800),
-                contentColor = ComposeColor.Black,
-                shape = CircleShape
-            ) {
-                Icon(Icons.Default.Add, "Add Budget")
-            }
-        },
         containerColor = bgColor
     ) { padding ->
-        Column(
+        Box(
             modifier = Modifier
                 .padding(padding)
                 .fillMaxSize()
         ) {
-            // Header
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(surfaceColor)
-                    .padding(20.dp)
+                modifier = Modifier.fillMaxSize()
             ) {
-                Text("Monthly Budget", color = textColor, fontSize = 24.sp, fontWeight = FontWeight.ExtraBold)
-                Text(monthName, color = secondaryTextColor, fontSize = 14.sp)
+                // Header
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(surfaceColor)
+                        .padding(20.dp)
+                ) {
+                    Text("Monthly Budget", color = textColor, fontSize = 24.sp, fontWeight = FontWeight.ExtraBold)
+                    Text(monthName, color = secondaryTextColor, fontSize = 14.sp)
 
-                Spacer(Modifier.height(24.dp))
+                    Spacer(Modifier.height(24.dp))
 
-                // Summary Cards
-                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    GradientEdgeCard(
-                        colors = listOf(ComposeColor(0xFF536D7A), ComposeColor(0xFF81A1C1)),
-                        modifier = Modifier.weight(1f),
-                        isDark = isDark
-                    ) {
-                        Column {
-                            Text("TOTAL BUDGET", color = secondaryTextColor, fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                            Text("%,.0f".format(totalBudget), color = textColor, fontSize = 20.sp, fontWeight = FontWeight.Black)
+                    // Summary Cards
+                    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        GradientEdgeCard(
+                            colors = listOf(ComposeColor(0xFF536D7A), ComposeColor(0xFF81A1C1)),
+                            modifier = Modifier.weight(1f),
+                            isDark = isDark
+                        ) {
+                            Column {
+                                Text("TOTAL BUDGET", color = secondaryTextColor, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                                Text("%,.0f".format(totalBudget), color = textColor, fontSize = 20.sp, fontWeight = FontWeight.Black)
+                            }
+                        }
+                        GradientEdgeCard(
+                            colors = listOf(ComposeColor(0xFF00E676), ComposeColor(0xFF7BED9F)),
+                            modifier = Modifier.weight(1f),
+                            isDark = isDark
+                        ) {
+                            Column {
+                                Text("REMAINING", color = secondaryTextColor, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                                Text("%,.0f".format(remaining), color = textColor, fontSize = 20.sp, fontWeight = FontWeight.Black)
+                            }
                         }
                     }
-                    GradientEdgeCard(
-                        colors = listOf(ComposeColor(0xFF00E676), ComposeColor(0xFF7BED9F)),
-                        modifier = Modifier.weight(1f),
-                        isDark = isDark
-                    ) {
-                        Column {
-                            Text("REMAINING", color = secondaryTextColor, fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                            Text("%,.0f".format(remaining), color = textColor, fontSize = 20.sp, fontWeight = FontWeight.Black)
+                }
+
+                // Budget List
+                LazyColumn(
+                    modifier = Modifier.weight(1f),
+                    contentPadding = PaddingValues(bottom = 80.dp, start = 20.dp, end = 20.dp, top = 20.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    if (budgetsWithSpent.isEmpty()) {
+                        item {
+                            Box(Modifier.fillParentMaxHeight(0.6f).fillMaxWidth(), contentAlignment = Alignment.Center) {
+                                Text("No budgets set for this month", color = ComposeColor.Gray)
+                            }
+                        }
+                    } else {
+                        items(budgetsWithSpent) { item ->
+                            BudgetItem(
+                                item = item,
+                                isDark = isDark,
+                                textColor = textColor,
+                                secondaryTextColor = secondaryTextColor,
+                                surfaceColor = surfaceColor,
+                                onClick = { editingBudget = item }
+                            )
                         }
                     }
                 }
             }
 
-            // Budget List
-            LazyColumn(
-                modifier = Modifier.weight(1f),
-                contentPadding = PaddingValues(bottom = 80.dp, start = 20.dp, end = 20.dp, top = 20.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+            // Circular Add Button (Aligned Bottom End/Right)
+            Box(
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(end = 24.dp, bottom = 32.dp)
             ) {
-                if (budgetsWithSpent.isEmpty()) {
-                    item {
-                        Box(Modifier.fillParentMaxHeight(0.6f).fillMaxWidth(), contentAlignment = Alignment.Center) {
-                            Text("No budgets set for this month", color = ComposeColor.Gray)
-                        }
-                    }
-                } else {
-                    items(budgetsWithSpent) { item ->
-                        BudgetItem(
-                            item = item,
-                            isDark = isDark,
-                            textColor = textColor,
-                            secondaryTextColor = secondaryTextColor,
-                            surfaceColor = surfaceColor,
-                            onClick = { editingBudget = item }
-                        )
-                    }
+                FloatingActionButton(
+                    onClick = { showAddSheet = true },
+                    containerColor = ComposeColor(0xFFFF9800),
+                    contentColor = ComposeColor.White,
+                    shape = CircleShape,
+                    modifier = Modifier.size(56.dp)
+                ) {
+                    Icon(Icons.Default.Add, "Add Budget")
                 }
             }
         }
 
         if (showAddSheet) {
-            val existingCategories = budgetsWithSpent.map { it.budget.category }
+            val budgetsWithSpentValue = budgetsWithSpent
+            val availableCategories by viewModel.availableCategories.observeAsState(emptyList())
+            
+            val existingCategories = budgetsWithSpentValue.map { it.budget.category }
+            val filteredCategories = availableCategories.filter { it !in existingCategories }
+            
             AddBudgetSheet(
-                categories = viewModel.availableCategories.filter { it !in existingCategories },
+                categories = filteredCategories,
                 isDark = isDark,
                 onSave = { cat, limit ->
                     viewModel.addBudget(cat, limit)

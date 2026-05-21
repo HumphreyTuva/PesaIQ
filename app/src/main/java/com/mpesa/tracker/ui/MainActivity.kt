@@ -54,6 +54,23 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         binding.bottomNavigation.setupWithNavController(navController)
 
+        // Force navigation to work in a single click from ANY sub-page to ANY tab root
+        val navOptions = androidx.navigation.NavOptions.Builder()
+            .setLaunchSingleTop(true)
+            .setPopUpTo(navController.graph.startDestinationId, false)
+            .build()
+
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            navController.navigate(item.itemId, null, navOptions)
+            true
+        }
+
+        binding.bottomNavigation.setOnItemReselectedListener { item ->
+            if (navController.currentDestination?.id != item.itemId) {
+                navController.navigate(item.itemId, null, navOptions)
+            }
+        }
+
         checkAndRequestPermissions()
     }
 

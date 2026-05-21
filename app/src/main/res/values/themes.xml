@@ -71,4 +71,27 @@
         <item name="android:windowBackground">@color/bg_card_white</item>
         <item name="android:textColorPrimary">@color/text_main</item>
     </style>
+
+    <style name="PremiumSettingsCard" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/bg_dark_card</item>
+        <item name="cardCornerRadius">24dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <style name="ShapeAppearance.MpesaTracker.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="SettingTitle">
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SettingSubtitle">
+        <item name="android:textColor">@color/text_gray_light</item>
+        <item name="android:textSize">13sp</item>
+    </style>
 </resources>

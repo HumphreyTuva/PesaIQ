@@ -2,6 +2,7 @@ package com.mpesa.tracker.data.repository
 
 import android.util.Log
 import com.mpesa.tracker.data.db.BudgetDao
+import com.mpesa.tracker.data.db.CategoryDao
 import com.mpesa.tracker.data.db.CategoryMappingDao
 import com.mpesa.tracker.data.db.CategoryRuleDao
 import com.mpesa.tracker.data.db.CategoryTotal
@@ -22,11 +23,25 @@ class TransactionRepository(
     private val budgetDao: BudgetDao,
     private val categoryMappingDao: CategoryMappingDao,
     private val categoryRuleDao: CategoryRuleDao,
-    private val exclusionRuleDao: ExclusionRuleDao        // post-processing only
+    private val exclusionRuleDao: ExclusionRuleDao,
+    private val categoryDao: CategoryDao
 ) {
 
     companion object {
         private const val TAG = "TransactionRepo"
+    }
+
+    // ── Categories ────────────────────────────────────────────────────────────
+
+    fun getAllCategories(): Flow<List<com.mpesa.tracker.data.model.Category>> =
+        categoryDao.getAllCategories()
+
+    suspend fun addCategory(name: String) {
+        categoryDao.insert(com.mpesa.tracker.data.model.Category(name = name, isDefault = false))
+    }
+
+    suspend fun deleteCategory(category: com.mpesa.tracker.data.model.Category) {
+        categoryDao.delete(category)
     }
 
     // ── Transactions ──────────────────────────────────────────────────────────

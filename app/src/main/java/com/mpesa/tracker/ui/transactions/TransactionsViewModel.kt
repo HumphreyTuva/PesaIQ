@@ -11,6 +11,7 @@ class TransactionsViewModel(private val repo: TransactionRepository) : ViewModel
     private val _filterCategory = MutableLiveData<String?>(null)
 
     val allTransactions: LiveData<List<Transaction>> = repo.getAllTransactions().asLiveData()
+    val categories: LiveData<List<com.mpesa.tracker.data.model.Category>> = repo.getAllCategories().asLiveData()
 
     val filteredTransactions: LiveData<List<Transaction>> =
         MediatorLiveData<List<Transaction>>().apply {
@@ -61,12 +62,30 @@ class TransactionsViewModel(private val repo: TransactionRepository) : ViewModel
         }
     }
 
+    fun includeTransaction(tx: Transaction) {
+        viewModelScope.launch { 
+            repo.updateTransaction(tx.copy(isExcluded = false))
+        }
+    }
+
     fun deleteTransaction(tx: Transaction) {
         viewModelScope.launch { repo.deleteTransaction(tx) }
     }
 
     fun restoreTransaction(tx: Transaction) {
         viewModelScope.launch { repo.insertTransaction(tx) }
+    }
+
+    fun addManualTransaction(transaction: Transaction) {
+        viewModelScope.launch { repo.insertTransaction(transaction) }
+    }
+
+    fun addCategory(name: String) {
+        viewModelScope.launch { repo.addCategory(name) }
+    }
+
+    fun deleteCategory(category: com.mpesa.tracker.data.model.Category) {
+        viewModelScope.launch { repo.deleteCategory(category) }
     }
 }
 

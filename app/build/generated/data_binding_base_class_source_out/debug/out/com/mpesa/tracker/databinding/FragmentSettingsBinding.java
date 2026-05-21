@@ -5,16 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.widget.NestedScrollView;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.chip.ChipGroup;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mpesa.tracker.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -22,47 +17,29 @@ import java.lang.String;
 
 public final class FragmentSettingsBinding implements ViewBinding {
   @NonNull
-  private final NestedScrollView rootView;
+  private final CoordinatorLayout rootView;
 
   @NonNull
-  public final MaterialButton btnCustomColor;
+  public final LinearLayout itemAppearance;
 
   @NonNull
-  public final LinearLayout colorPickerRow;
+  public final LinearLayout itemCategories;
 
   @NonNull
-  public final FloatingActionButton fabAddExclusion;
+  public final LinearLayout itemTransactions;
 
-  @NonNull
-  public final ChipGroup fontChipGroup;
-
-  @NonNull
-  public final RecyclerView rvExclusions;
-
-  @NonNull
-  public final ChipGroup themeChipGroup;
-
-  @NonNull
-  public final TextView tvNoExclusions;
-
-  private FragmentSettingsBinding(@NonNull NestedScrollView rootView,
-      @NonNull MaterialButton btnCustomColor, @NonNull LinearLayout colorPickerRow,
-      @NonNull FloatingActionButton fabAddExclusion, @NonNull ChipGroup fontChipGroup,
-      @NonNull RecyclerView rvExclusions, @NonNull ChipGroup themeChipGroup,
-      @NonNull TextView tvNoExclusions) {
+  private FragmentSettingsBinding(@NonNull CoordinatorLayout rootView,
+      @NonNull LinearLayout itemAppearance, @NonNull LinearLayout itemCategories,
+      @NonNull LinearLayout itemTransactions) {
     this.rootView = rootView;
-    this.btnCustomColor = btnCustomColor;
-    this.colorPickerRow = colorPickerRow;
-    this.fabAddExclusion = fabAddExclusion;
-    this.fontChipGroup = fontChipGroup;
-    this.rvExclusions = rvExclusions;
-    this.themeChipGroup = themeChipGroup;
-    this.tvNoExclusions = tvNoExclusions;
+    this.itemAppearance = itemAppearance;
+    this.itemCategories = itemCategories;
+    this.itemTransactions = itemTransactions;
   }
 
   @Override
   @NonNull
-  public NestedScrollView getRoot() {
+  public CoordinatorLayout getRoot() {
     return rootView;
   }
 
@@ -87,51 +64,26 @@ public final class FragmentSettingsBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.btn_custom_color;
-      MaterialButton btnCustomColor = ViewBindings.findChildViewById(rootView, id);
-      if (btnCustomColor == null) {
+      id = R.id.item_appearance;
+      LinearLayout itemAppearance = ViewBindings.findChildViewById(rootView, id);
+      if (itemAppearance == null) {
         break missingId;
       }
 
-      id = R.id.color_picker_row;
-      LinearLayout colorPickerRow = ViewBindings.findChildViewById(rootView, id);
-      if (colorPickerRow == null) {
+      id = R.id.item_categories;
+      LinearLayout itemCategories = ViewBindings.findChildViewById(rootView, id);
+      if (itemCategories == null) {
         break missingId;
       }
 
-      id = R.id.fab_add_exclusion;
-      FloatingActionButton fabAddExclusion = ViewBindings.findChildViewById(rootView, id);
-      if (fabAddExclusion == null) {
+      id = R.id.item_transactions;
+      LinearLayout itemTransactions = ViewBindings.findChildViewById(rootView, id);
+      if (itemTransactions == null) {
         break missingId;
       }
 
-      id = R.id.font_chip_group;
-      ChipGroup fontChipGroup = ViewBindings.findChildViewById(rootView, id);
-      if (fontChipGroup == null) {
-        break missingId;
-      }
-
-      id = R.id.rv_exclusions;
-      RecyclerView rvExclusions = ViewBindings.findChildViewById(rootView, id);
-      if (rvExclusions == null) {
-        break missingId;
-      }
-
-      id = R.id.theme_chip_group;
-      ChipGroup themeChipGroup = ViewBindings.findChildViewById(rootView, id);
-      if (themeChipGroup == null) {
-        break missingId;
-      }
-
-      id = R.id.tv_no_exclusions;
-      TextView tvNoExclusions = ViewBindings.findChildViewById(rootView, id);
-      if (tvNoExclusions == null) {
-        break missingId;
-      }
-
-      return new FragmentSettingsBinding((NestedScrollView) rootView, btnCustomColor,
-          colorPickerRow, fabAddExclusion, fontChipGroup, rvExclusions, themeChipGroup,
-          tvNoExclusions);
+      return new FragmentSettingsBinding((CoordinatorLayout) rootView, itemAppearance,
+          itemCategories, itemTransactions);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

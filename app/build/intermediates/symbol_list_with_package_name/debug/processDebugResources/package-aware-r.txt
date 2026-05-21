@@ -1409,9 +1409,11 @@ color background_material_dark
 color background_material_light
 color bg_card
 color bg_card_white
+color bg_dark_card
 color bg_deep
 color bg_elevated
 color bg_main
+color bg_navy_black
 color bg_surface
 color bg_surface_light
 color border_light
@@ -1441,6 +1443,7 @@ color chart_5
 color chart_6
 color chart_7
 color chart_8
+color chevron_gray
 color chip_bg_selector
 color chip_stroke_selector
 color chip_text_selector
@@ -1490,6 +1493,7 @@ color dim_foreground_disabled_material_dark
 color dim_foreground_disabled_material_light
 color dim_foreground_material_dark
 color dim_foreground_material_light
+color divider_dark
 color error_color_material_dark
 color error_color_material_light
 color expense_red
@@ -2177,12 +2181,14 @@ color switch_thumb_material_dark
 color switch_thumb_material_light
 color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
+color text_gray_light
 color text_hint
 color text_main
 color text_muted
 color text_primary
 color text_secondary
 color text_sub
+color text_white
 color tooltip_background_dark
 color tooltip_background_light
 color vector_tint_color
@@ -3410,6 +3416,7 @@ id enterAlways
 id enterAlwaysCollapsed
 id et_amount
 id et_budget_amount
+id et_category_name
 id et_hex
 id et_keyword
 id et_notes
@@ -3420,6 +3427,7 @@ id expand_activities_button
 id expanded_menu
 id exportFragment
 id fab_add_budget
+id fab_add_category
 id fab_add_exclusion
 id fade
 id fill
@@ -3471,7 +3479,11 @@ id invisible
 id inward
 id is_pooling_container_tag
 id italic
+id item_appearance
+id item_categories
 id item_touch_helper_previous_elevation
+id item_transactions
+id iv_delete
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -3623,6 +3635,7 @@ id rounded
 id row_index_key
 id rtl
 id rv_budgets
+id rv_categories
 id rv_exclusions
 id rv_transactions
 id save_non_transition_alpha
@@ -3723,6 +3736,7 @@ id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
 id theme_chip_group
+id til_category_name
 id time
 id title
 id titleDividerNoCustom
@@ -3744,6 +3758,7 @@ id tv_amount
 id tv_budget_month
 id tv_category
 id tv_category_emoji
+id tv_category_name
 id tv_date
 id tv_date_range
 id tv_emoji
@@ -3938,9 +3953,13 @@ layout fragment_transactions
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_budget
+layout item_category_manage
 layout item_color_circle
 layout item_exclusion_rule
 layout item_transaction
+layout layout_settings_appearance
+layout layout_settings_categories
+layout layout_settings_transactions
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -4001,6 +4020,7 @@ layout notification_template_part_time
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
+layout sheet_add_category
 layout sheet_add_exclusion
 layout sheet_custom_color
 layout support_simple_spinner_dropdown_item
@@ -4594,6 +4614,7 @@ style Platform_V21_AppCompat_Light
 style Platform_V25_AppCompat
 style Platform_V25_AppCompat_Light
 style Platform_Widget_AppCompat_Spinner
+style PremiumSettingsCard
 style PurpleButton
 style RtlOverlay_DialogWindowTitle_AppCompat
 style RtlOverlay_Widget_AppCompat_ActionBar_TitleItem
@@ -4613,6 +4634,8 @@ style RtlOverlay_Widget_AppCompat_SearchView_MagIcon
 style RtlUnderlay_Widget_AppCompat_ActionButton
 style RtlUnderlay_Widget_AppCompat_ActionButton_Overflow
 style SectionHeader
+style SettingSubtitle
+style SettingTitle
 style ShapeAppearance_M3_Comp_Badge_Large_Shape
 style ShapeAppearance_M3_Comp_Badge_Shape
 style ShapeAppearance_M3_Comp_BottomAppBar_Container_Shape
@@ -4656,6 +4679,7 @@ style ShapeAppearance_MaterialComponents_LargeComponent
 style ShapeAppearance_MaterialComponents_MediumComponent
 style ShapeAppearance_MaterialComponents_SmallComponent
 style ShapeAppearance_MaterialComponents_Tooltip
+style ShapeAppearance_MpesaTracker_Circle
 style ShapeAppearanceOverlay_Material3_Button
 style ShapeAppearanceOverlay_Material3_Chip
 style ShapeAppearanceOverlay_Material3_Corner_Bottom

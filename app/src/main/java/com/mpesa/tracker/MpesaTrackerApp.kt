@@ -15,7 +15,8 @@ class MpesaTrackerApp : Application() {
             database.budgetDao(),
             database.categoryMappingDao(),
             database.categoryRuleDao(),
-            database.exclusionRuleDao()     // wired here — no parser dependency
+            database.exclusionRuleDao(),
+            database.categoryDao()
         )
     }
 

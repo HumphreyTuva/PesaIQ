@@ -50,7 +50,7 @@ class AnalyticsFragment : Fragment() {
         val isDark = when (mode) {
             com.mpesa.tracker.utils.ThemeManager.UiMode.DARK -> true
             com.mpesa.tracker.utils.ThemeManager.UiMode.LIGHT -> false
-            com.mpesa.tracker.utils.ThemeManager.UiMode.FOLLOW_SYSTEM -> 
+            com.mpesa.tracker.utils.ThemeManager.UiMode.FOLLOW_SYSTEM ->
                 (resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES
         }
 
@@ -62,7 +62,7 @@ class AnalyticsFragment : Fragment() {
         binding.root.setBackgroundColor(bgColor)
         binding.cardDistribution.setCardBackgroundColor(surfaceColor)
         binding.cardTrends.setCardBackgroundColor(surfaceColor)
-        
+
         binding.tvTitle.setTextColor(textColor)
         binding.tvTitleDistribution.setTextColor(secondaryTextColor)
         binding.tvTitleTrends.setTextColor(secondaryTextColor)
@@ -73,7 +73,7 @@ class AnalyticsFragment : Fragment() {
         val isDark = when (mode) {
             com.mpesa.tracker.utils.ThemeManager.UiMode.DARK -> true
             com.mpesa.tracker.utils.ThemeManager.UiMode.LIGHT -> false
-            com.mpesa.tracker.utils.ThemeManager.UiMode.FOLLOW_SYSTEM -> 
+            com.mpesa.tracker.utils.ThemeManager.UiMode.FOLLOW_SYSTEM ->
                 (resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES
         }
         val secondaryTextColor = if (isDark) Color.parseColor("#8890B0") else Color.parseColor("#6E6E73")
@@ -102,7 +102,7 @@ class AnalyticsFragment : Fragment() {
         val isDark = when (mode) {
             com.mpesa.tracker.utils.ThemeManager.UiMode.DARK -> true
             com.mpesa.tracker.utils.ThemeManager.UiMode.LIGHT -> false
-            com.mpesa.tracker.utils.ThemeManager.UiMode.FOLLOW_SYSTEM -> 
+            com.mpesa.tracker.utils.ThemeManager.UiMode.FOLLOW_SYSTEM ->
                 (resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES
         }
         val secondaryTextColor = if (isDark) Color.parseColor("#8890B0") else Color.parseColor("#6E6E73")
@@ -176,7 +176,7 @@ class AnalyticsFragment : Fragment() {
             val isDark = when (mode) {
                 com.mpesa.tracker.utils.ThemeManager.UiMode.DARK -> true
                 com.mpesa.tracker.utils.ThemeManager.UiMode.LIGHT -> false
-                com.mpesa.tracker.utils.ThemeManager.UiMode.FOLLOW_SYSTEM -> 
+                com.mpesa.tracker.utils.ThemeManager.UiMode.FOLLOW_SYSTEM ->
                     (resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES
             }
             valueTextColor = if (isDark) Color.WHITE else Color.BLACK
@@ -214,7 +214,7 @@ class AnalyticsFragment : Fragment() {
         val isDark = when (mode) {
             com.mpesa.tracker.utils.ThemeManager.UiMode.DARK -> true
             com.mpesa.tracker.utils.ThemeManager.UiMode.LIGHT -> false
-            com.mpesa.tracker.utils.ThemeManager.UiMode.FOLLOW_SYSTEM -> 
+            com.mpesa.tracker.utils.ThemeManager.UiMode.FOLLOW_SYSTEM ->
                 (resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES
         }
         

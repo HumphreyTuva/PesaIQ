@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.animation.*
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -20,9 +22,12 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color as ComposeColor
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -34,6 +39,8 @@ import com.mpesa.tracker.data.model.Transaction
 import com.mpesa.tracker.ui.components.TransactionEditSheet
 import com.mpesa.tracker.ui.components.TransactionItem
 import com.mpesa.tracker.utils.ThemeManager
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class TransactionsFragment : Fragment() {
 
@@ -41,24 +48,47 @@ class TransactionsFragment : Fragment() {
         TransactionsViewModelFactory((requireActivity().application as MpesaTrackerApp).repository)
     }
 
-    private val categories = listOf(
-        "All", "Excluded", "Groceries", "Utilities", "Transport", "Food & Dining",
-        "Airtime", "Entertainment", "Health", "Education",
-        "Transfer", "Withdrawal", "Income", "Other"
-    )
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 MaterialTheme {
                     var editingTransaction by remember { mutableStateOf<Transaction?>(null) }
+                    var showAddManual by remember { mutableStateOf(false) }
+
+                    val dbCategories by viewModel.categories.observeAsState(emptyList())
+                    val categoryNames = remember(dbCategories) {
+                        listOf("All", "Excluded") + dbCategories.map { it.name }
+                    }
                     
                     TransactionsScreen(
                         viewModel = viewModel,
-                        categories = categories,
-                        onTransactionClick = { tx -> editingTransaction = tx }
+                        categories = categoryNames,
+                        onTransactionClick = { tx -> editingTransaction = tx },
+                        onAddManualClick = { showAddManual = true }
                     )
+
+                    if (showAddManual) {
+                        val context = LocalContext.current
+                        val currentMode = remember { mutableStateOf(ThemeManager.getUiMode(context)) }
+                        val isDark = when (currentMode.value) {
+                            ThemeManager.UiMode.DARK -> true
+                            ThemeManager.UiMode.LIGHT -> false
+                            ThemeManager.UiMode.FOLLOW_SYSTEM -> androidx.compose.foundation.isSystemInDarkTheme()
+                        }
+
+                        TransactionEditSheet(
+                            tx = null,
+                            categories = dbCategories.map { it.name },
+                            isDark = isDark,
+                            isManualEntry = true,
+                            onSave = { manualTx ->
+                                viewModel.addManualTransaction(manualTx)
+                                showAddManual = false
+                            },
+                            onDismiss = { showAddManual = false }
+                        )
+                    }
 
                     editingTransaction?.let { tx ->
                         val context = androidx.compose.ui.platform.LocalContext.current
@@ -71,7 +101,7 @@ class TransactionsFragment : Fragment() {
                         
                         TransactionEditSheet(
                             tx = tx,
-                            categories = categories,
+                            categories = dbCategories.map { it.name },
                             isDark = isDark,
                             onSave = { updated ->
                                 viewModel.updateTransaction(updated)
@@ -94,13 +124,17 @@ class TransactionsFragment : Fragment() {
 fun TransactionsScreen(
     viewModel: TransactionsViewModel,
     categories: List<String>,
-    onTransactionClick: (Transaction) -> Unit
+    onTransactionClick: (Transaction) -> Unit,
+    onAddManualClick: () -> Unit
 ) {
     val transactions by viewModel.filteredTransactions.observeAsState(emptyList())
     var searchQuery by remember { mutableStateOf("") }
     var selectedCategory by remember { mutableStateOf("All") }
 
-    val context = androidx.compose.ui.platform.LocalContext.current
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
+    
     val currentMode = remember { mutableStateOf(ThemeManager.getUiMode(context)) }
     val isDark = when (currentMode.value) {
         ThemeManager.UiMode.DARK -> true
@@ -217,17 +251,116 @@ fun TransactionsScreen(
             } else {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
-                    contentPadding = PaddingValues(vertical = 8.dp)
+                    contentPadding = PaddingValues(top = 8.dp, bottom = 80.dp)
                 ) {
-                    items(transactions) { tx ->
-                        TransactionItem(
-                            transaction = tx,
-                            onClick = { onTransactionClick(tx) },
-                            isDark = isDark
+                    items(
+                        items = transactions,
+                        key = { it.id }
+                    ) { tx ->
+                        val dismissState = rememberSwipeToDismissBoxState(
+                            confirmValueChange = { value ->
+                                if (value == SwipeToDismissBoxValue.StartToEnd || value == SwipeToDismissBoxValue.EndToStart) {
+                                    val wasExcluded = tx.isExcluded
+                                    if (wasExcluded) {
+                                        viewModel.includeTransaction(tx)
+                                    } else {
+                                        viewModel.excludeTransaction(tx)
+                                    }
+                                    
+                                    scope.launch {
+                                        val result = snackbarHostState.showSnackbar(
+                                            message = if (wasExcluded) "Transaction restored" else "Transaction excluded",
+                                            actionLabel = "UNDO",
+                                            duration = SnackbarDuration.Short
+                                        )
+                                        if (result == SnackbarResult.ActionPerformed) {
+                                            if (wasExcluded) viewModel.excludeTransaction(tx)
+                                            else viewModel.includeTransaction(tx)
+                                        }
+                                    }
+                                    true
+                                } else {
+                                    false
+                                }
+                            }
+                        )
+
+                        SwipeToDismissBox(
+                            state = dismissState,
+                            backgroundContent = {
+                                val direction = dismissState.dismissDirection
+                                if (direction == SwipeToDismissBoxValue.Settled) return@SwipeToDismissBox
+
+                                val color by animateColorAsState(
+                                    when (dismissState.targetValue) {
+                                        SwipeToDismissBoxValue.Settled -> ComposeColor.Transparent
+                                        else -> ComposeColor(0xFFFF9800).copy(alpha = 0.2f)
+                                    }, label = "background"
+                                )
+                                
+                                Box(
+                                    Modifier
+                                        .fillMaxSize()
+                                        .background(color)
+                                        .padding(horizontal = 24.dp),
+                                    contentAlignment = if (direction == SwipeToDismissBoxValue.StartToEnd) 
+                                        Alignment.CenterStart else Alignment.CenterEnd
+                                ) {
+                                    Icon(
+                                        if (tx.isExcluded) Icons.Default.Add else Icons.Default.Block,
+                                        contentDescription = null,
+                                        tint = ComposeColor(0xFFFF9800)
+                                    )
+                                }
+                            },
+                            content = {
+                                TransactionItem(
+                                    transaction = tx,
+                                    onClick = { onTransactionClick(tx) },
+                                    isDark = isDark
+                                )
+                            }
                         )
                     }
                 }
             }
+
+            // Circular Add Button (Aligned Bottom End/Right)
+            Box(
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(end = 24.dp, bottom = 32.dp)
+            ) {
+                FloatingActionButton(
+                    onClick = onAddManualClick,
+                    containerColor = ComposeColor(0xFFFF9800),
+                    contentColor = ComposeColor.White,
+                    shape = CircleShape,
+                    modifier = Modifier.size(56.dp)
+                ) {
+                    Icon(Icons.Default.Add, "Add Cash Transaction")
+                }
+            }
+
+            SnackbarHost(
+                hostState = snackbarHostState,
+                modifier = Modifier.align(Alignment.BottomCenter),
+                snackbar = { data ->
+                    Snackbar(
+                        modifier = Modifier.padding(16.dp),
+                        action = {
+                            TextButton(onClick = { data.performAction() }) {
+                                Text(data.visuals.actionLabel ?: "", color = ComposeColor(0xFFFF9800))
+                            }
+                        },
+                        containerColor = surfaceColor,
+                        contentColor = textColor,
+                        shape = RoundedCornerShape(12.dp)
+                    ) {
+                        Text(data.visuals.message)
+                    }
+                }
+            )
         }
     }
 }

@@ -37,10 +37,12 @@ public final class AppDatabase_Impl extends AppDatabase {
 
   private volatile ExclusionRuleDao _exclusionRuleDao;
 
+  private volatile CategoryDao _categoryDao;
+
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(5) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(6) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS `transactions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `transactionId` TEXT NOT NULL, `type` TEXT NOT NULL, `amount` REAL NOT NULL, `recipient` TEXT, `phone` TEXT, `balance` REAL, `category` TEXT NOT NULL, `note` TEXT, `rawSms` TEXT NOT NULL, `timestamp` INTEGER NOT NULL, `isManual` INTEGER NOT NULL, `isExcluded` INTEGER NOT NULL, `isUserEdited` INTEGER NOT NULL)");
@@ -50,8 +52,9 @@ public final class AppDatabase_Impl extends AppDatabase {
         db.execSQL("CREATE TABLE IF NOT EXISTS `category_rules` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `identifier` TEXT NOT NULL, `category` TEXT NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `exclusion_rules` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `keyword` TEXT NOT NULL, `matchType` TEXT NOT NULL, `isEnabled` INTEGER NOT NULL, `isPreset` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL)");
         db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS `index_exclusion_rules_keyword` ON `exclusion_rules` (`keyword`)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `categories` (`name` TEXT NOT NULL, `isDefault` INTEGER NOT NULL, PRIMARY KEY(`name`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '49b3f3a05c20f95fc273f6bbd78c06c3')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8c8c910afabd86fafdb6c4ee58bd36cb')");
       }
 
       @Override
@@ -61,6 +64,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         db.execSQL("DROP TABLE IF EXISTS `category_mappings`");
         db.execSQL("DROP TABLE IF EXISTS `category_rules`");
         db.execSQL("DROP TABLE IF EXISTS `exclusion_rules`");
+        db.execSQL("DROP TABLE IF EXISTS `categories`");
         final List<? extends RoomDatabase.Callback> _callbacks = mCallbacks;
         if (_callbacks != null) {
           for (RoomDatabase.Callback _callback : _callbacks) {
@@ -187,9 +191,21 @@ public final class AppDatabase_Impl extends AppDatabase {
                   + " Expected:\n" + _infoExclusionRules + "\n"
                   + " Found:\n" + _existingExclusionRules);
         }
+        final HashMap<String, TableInfo.Column> _columnsCategories = new HashMap<String, TableInfo.Column>(2);
+        _columnsCategories.put("name", new TableInfo.Column("name", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsCategories.put("isDefault", new TableInfo.Column("isDefault", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysCategories = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesCategories = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoCategories = new TableInfo("categories", _columnsCategories, _foreignKeysCategories, _indicesCategories);
+        final TableInfo _existingCategories = TableInfo.read(db, "categories");
+        if (!_infoCategories.equals(_existingCategories)) {
+          return new RoomOpenHelper.ValidationResult(false, "categories(com.mpesa.tracker.data.model.Category).\n"
+                  + " Expected:\n" + _infoCategories + "\n"
+                  + " Found:\n" + _existingCategories);
+        }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "49b3f3a05c20f95fc273f6bbd78c06c3", "0a4f90ab4d457bf1ecb2dc375477ebbb");
+    }, "8c8c910afabd86fafdb6c4ee58bd36cb", "8f2dd67bbf5af4f171419891ea968255");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
@@ -200,7 +216,7 @@ public final class AppDatabase_Impl extends AppDatabase {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     final HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "transactions","budgets","category_mappings","category_rules","exclusion_rules");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "transactions","budgets","category_mappings","category_rules","exclusion_rules","categories");
   }
 
   @Override
@@ -214,6 +230,7 @@ public final class AppDatabase_Impl extends AppDatabase {
       _db.execSQL("DELETE FROM `category_mappings`");
       _db.execSQL("DELETE FROM `category_rules`");
       _db.execSQL("DELETE FROM `exclusion_rules`");
+      _db.execSQL("DELETE FROM `categories`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();
@@ -233,6 +250,7 @@ public final class AppDatabase_Impl extends AppDatabase {
     _typeConvertersMap.put(CategoryMappingDao.class, CategoryMappingDao_Impl.getRequiredConverters());
     _typeConvertersMap.put(CategoryRuleDao.class, CategoryRuleDao_Impl.getRequiredConverters());
     _typeConvertersMap.put(ExclusionRuleDao.class, ExclusionRuleDao_Impl.getRequiredConverters());
+    _typeConvertersMap.put(CategoryDao.class, CategoryDao_Impl.getRequiredConverters());
     return _typeConvertersMap;
   }
 
@@ -317,6 +335,20 @@ public final class AppDatabase_Impl extends AppDatabase {
           _exclusionRuleDao = new ExclusionRuleDao_Impl(this);
         }
         return _exclusionRuleDao;
+      }
+    }
+  }
+
+  @Override
+  public CategoryDao categoryDao() {
+    if (_categoryDao != null) {
+      return _categoryDao;
+    } else {
+      synchronized(this) {
+        if(_categoryDao == null) {
+          _categoryDao = new CategoryDao_Impl(this);
+        }
+        return _categoryDao;
       }
     }
   }

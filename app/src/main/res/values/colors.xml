@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Modern Light Theme (Inspired by Konnect Design) -->
+    <!-- Premium Dark Theme Colors -->
+    <color name="bg_navy_black">#0C0D11</color>
+    <color name="bg_dark_card">#1A1C1E</color>
+    <color name="divider_dark">#22242A</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_gray_light">#8E8E93</color>
+    <color name="chevron_gray">#48484A</color>
     <color name="brand_orange">#FF9800</color>
     <color name="brand_orange_light">#33FF9800</color>
     <color name="brand_yellow">#FFD600</color>

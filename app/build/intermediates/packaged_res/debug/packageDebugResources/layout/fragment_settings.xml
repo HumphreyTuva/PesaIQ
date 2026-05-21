@@ -1,253 +1,328 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_deep"
-    android:clipToPadding="false">
+    android:background="@color/bg_navy_black">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="100dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <!-- Header -->
-        <LinearLayout
+        <!-- Header (Fixed) -->
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/bg_main"
-            android:orientation="vertical"
             android:paddingHorizontal="20dp"
-            android:paddingTop="20dp"
+            android:paddingTop="32dp"
             android:paddingBottom="16dp">
-            <TextView
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Settings"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_main"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Personalise your experience"
-                android:textSize="13sp"
-                android:textColor="@color/text_sub"/>
-        </LinearLayout>
-
-        <!-- ══════════════════════════════════════════════════════ -->
-        <!--   SECTION 1: APPEARANCE                              -->
-        <!-- ══════════════════════════════════════════════════════ -->
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="APPEARANCE"
-            style="@style/SectionHeader"
-            android:textColor="@color/text_muted"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="10dp"/>
-
-        <com.google.android.material.card.MaterialCardView
-            style="@style/StatCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="18dp">
-
-                <!-- Accent color label -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Accent Color"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_main"/>
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_custom_color"
-                        style="@style/Widget.Material3.Button.OutlinedButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:text="Custom #HEX"
-                        android:textSize="12sp"/>
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Choose a preset or enter any hex code"
-                    android:textSize="12sp"
-                    android:textColor="@color/text_sub"
-                    android:layout_marginBottom="14dp"/>
-
-                <!-- Color circles row -->
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none">
-                    <LinearLayout
-                        android:id="@+id/color_picker_row"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"/>
-                </HorizontalScrollView>
-
-                <!-- Divider -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/border_light"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginBottom="18dp"/>
-
-                <!-- Font style -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Font Style"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/text_main"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Changes typography across the whole app"
-                    android:textSize="12sp"
-                    android:textColor="@color/text_sub"
-                    android:layout_marginBottom="10dp"/>
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/font_chip_group"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <!-- Divider -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/border_light"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginBottom="18dp"/>
-
-                <!-- Theme Mode -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Theme Mode"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/text_main"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Light, Dark, or System Default"
-                    android:textSize="12sp"
-                    android:textColor="@color/text_sub"
-                    android:layout_marginBottom="10dp"/>
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/theme_chip_group"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:singleSelection="true"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- ══════════════════════════════════════════════════════ -->
-        <!--   SECTION 2: TRANSACTION EXCLUSIONS                  -->
-        <!-- ══════════════════════════════════════════════════════ -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginBottom="8dp">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TRANSACTION EXCLUSIONS"
-                    style="@style/SectionHeader"
-                    android:textColor="@color/text_muted"/>
+                    android:text="Settings"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_white"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Excluded transactions are silently ignored — not saved"
-                    android:textSize="12sp"
-                    android:textColor="@color/text_sub"
+                    android:text="Personalize your experience"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_gray_light"
                     android:layout_marginTop="2dp"/>
             </LinearLayout>
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_add_exclusion"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:fabSize="mini"
-                android:src="@android:drawable/ic_input_add"
-                app:tint="@color/white"
-                app:backgroundTint="@color/brand_orange"
-                android:contentDescription="Add exclusion rule"/>
-        </LinearLayout>
 
-        <!-- Presets info banner -->
-        <LinearLayout
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@android:drawable/ic_menu_search"
+                app:tint="@color/text_gray_light"
+                android:alpha="0.6"/>
+        </RelativeLayout>
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/warning_banner"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="12dp">
-            <TextView
-                android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingBottom="100dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="🔒"
-                android:textSize="16sp"
-                android:layout_marginEnd="8dp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Preset rules (M-Shwari, Fuliza, Ziidi, etc.) are OFF by default. Toggle the ones you want to exclude."
-                android:textSize="12sp"
-                android:textColor="@color/warning_amber"/>
-        </LinearLayout>
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingBottom="20dp">
 
-        <TextView
-            android:id="@+id/tv_no_exclusions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="24dp"
-            android:text="No exclusion rules yet"
-            android:textColor="@color/text_hint"
-            android:textSize="14sp"
-            android:visibility="gone"/>
+                <!-- Settings Card -->
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/PremiumSettingsCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_exclusions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            android:paddingHorizontal="16dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingVertical="12dp">
 
+                        <!-- Appearance & Display -->
+                        <LinearLayout
+                            android:id="@+id/item_appearance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="20dp"
+                            android:background="?attr/selectableItemBackground">
+                            <ImageView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:src="@android:drawable/ic_menu_gallery"
+                                app:tint="@color/brand_orange"
+                                android:layout_marginEnd="20dp"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/SettingTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Appearance &amp; Display"/>
+                                <TextView
+                                    style="@style/SettingSubtitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Accent color, font style, theme mode"/>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="@color/chevron_gray"/>
+                        </LinearLayout>
+
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                            android:background="@color/divider_dark" android:layout_marginHorizontal="20dp"/>
+
+                        <!-- Transaction Controls -->
+                        <LinearLayout
+                            android:id="@+id/item_transactions"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="20dp"
+                            android:background="?attr/selectableItemBackground">
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:padding="10dp"
+                                android:src="@android:drawable/ic_menu_add"
+                                app:tint="@color/white"
+                                android:background="@color/brand_orange"
+                                app:shapeAppearanceOverlay="@style/ShapeAppearance.MpesaTracker.Circle"
+                                android:layout_marginEnd="16dp"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/SettingTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Transaction Controls"/>
+                                <TextView
+                                    style="@style/SettingSubtitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Manage rules for M-Shwari, Fuliza, Ziidi, etc."/>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="@color/chevron_gray"/>
+                        </LinearLayout>
+
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                            android:background="@color/divider_dark" android:layout_marginHorizontal="20dp"/>
+
+                        <!-- Transaction Categories -->
+                        <LinearLayout
+                            android:id="@+id/item_categories"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="20dp"
+                            android:background="?attr/selectableItemBackground">
+                            <ImageView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:src="@android:drawable/ic_menu_view"
+                                app:tint="@color/brand_orange"
+                                android:layout_marginEnd="20dp"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/SettingTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Transaction Categories"/>
+                                <TextView
+                                    style="@style/SettingSubtitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Add or remove spending categories"/>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="@color/chevron_gray"/>
+                        </LinearLayout>
+
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                            android:background="@color/divider_dark" android:layout_marginHorizontal="20dp"/>
+
+                        <!-- Privacy & Security -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="20dp"
+                            android:background="?attr/selectableItemBackground">
+                            <ImageView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:src="@android:drawable/ic_menu_info_details"
+                                app:tint="@color/brand_orange"
+                                android:layout_marginEnd="20dp"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/SettingTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Privacy &amp; Security"/>
+                                <TextView
+                                    style="@style/SettingSubtitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Data permissions, access, account security"/>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="@color/chevron_gray"/>
+                        </LinearLayout>
+
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                            android:background="@color/divider_dark" android:layout_marginHorizontal="20dp"/>
+
+                        <!-- General Preferences -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="20dp"
+                            android:background="?attr/selectableItemBackground">
+                            <ImageView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:src="@android:drawable/ic_menu_preferences"
+                                app:tint="@color/brand_orange"
+                                android:layout_marginEnd="20dp"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/SettingTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="General Preferences"/>
+                                <TextView
+                                    style="@style/SettingSubtitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Language, region, notifications"/>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="@color/chevron_gray"/>
+                        </LinearLayout>
+
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                            android:background="@color/divider_dark" android:layout_marginHorizontal="20dp"/>
+
+                        <!-- About & Support -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="20dp"
+                            android:background="?attr/selectableItemBackground">
+                            <ImageView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:src="@android:drawable/ic_menu_help"
+                                app:tint="@color/brand_orange"
+                                android:layout_marginEnd="20dp"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/SettingTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="About &amp; Support"/>
+                                <TextView
+                                    style="@style/SettingSubtitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Help, contact, app version 2.1.0"/>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="@color/chevron_gray"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

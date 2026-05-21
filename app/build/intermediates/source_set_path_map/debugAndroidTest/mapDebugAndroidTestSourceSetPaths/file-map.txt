@@ -1,0 +1,6 @@
+com.mpesa.tracker.test.app-core-1.5.0-0 C:\Users\8Tech\.gradle\caches\9.0.0\transforms\490f0a0b1b93461dd09f943caa7ef29c\transformed\core-1.5.0\res
+com.mpesa.tracker.test.app-annotation-experimental-1.4.0-1 C:\Users\8Tech\.gradle\caches\9.0.0\transforms\f8b5b264f6744724f77373c48032587b\transformed\annotation-experimental-1.4.0\res
+com.mpesa.tracker.test.app-androidTest-2 C:\Users\8Tech\Downloads\MpesaTracker_settings\mpesa-tracker\app\build\generated\res\resValues\androidTest\debug
+com.mpesa.tracker.test.app-mergeDebugAndroidTestResources-3 C:\Users\8Tech\Downloads\MpesaTracker_settings\mpesa-tracker\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.mpesa.tracker.test.app-mergeDebugAndroidTestResources-4 C:\Users\8Tech\Downloads\MpesaTracker_settings\mpesa-tracker\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.mpesa.tracker.test.app-debugAndroidTest-5 C:\Users\8Tech\Downloads\MpesaTracker_settings\mpesa-tracker\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

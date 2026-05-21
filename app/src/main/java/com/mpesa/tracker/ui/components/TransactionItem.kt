@@ -46,18 +46,21 @@ fun TransactionItem(
 
     val textColor = if (isDark) Color.White else Color.Black
     val secondaryTextColor = if (isDark) Color(0xFF8890B0) else Color(0xFF6E6E73)
+    val surfaceColor = if (isDark) Color(0xFF1A1C1E) else Color(0xFFFFFFFF)
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .background(surfaceColor)
             .clickable(onClick = onClick)
-            .padding(horizontal = 20.dp, vertical = 12.dp)
-            .alpha(if (transaction.isExcluded) 0.5f else 1f),
+            .padding(horizontal = 20.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
+        val contentAlpha = if (transaction.isExcluded) 0.5f else 1f
+        
         // Icon Circle
         Surface(
-            modifier = Modifier.size(48.dp),
+            modifier = Modifier.size(48.dp).alpha(contentAlpha),
             shape = CircleShape,
             color = accentColor.copy(alpha = 0.1f),
             border = androidx.compose.foundation.BorderStroke(1.dp, accentColor.copy(alpha = 0.3f))
@@ -70,7 +73,7 @@ fun TransactionItem(
         Spacer(Modifier.width(16.dp))
 
         // Info
-        Column(modifier = Modifier.weight(1f)) {
+        Column(modifier = Modifier.weight(1f).alpha(contentAlpha)) {
             Text(
                 text = (if (transaction.isExcluded) "${transaction.displayName()} (EXCLUDED)" else transaction.displayName()).uppercase(),
                 color = textColor,
@@ -87,7 +90,7 @@ fun TransactionItem(
         }
 
         // Amount
-        Column(horizontalAlignment = Alignment.End) {
+        Column(horizontalAlignment = Alignment.End, modifier = Modifier.alpha(contentAlpha)) {
             val amountText = if (transaction.isExpense) {
                 "-Ksh %,.0f".format(transaction.amount)
             } else {
