@@ -33,7 +33,7 @@
     <color name="divider_dark">#22242A</color>
     <color name="expense_red">#FF5252</color>
     <color name="green_500">#00E5A0</color>
-    <color name="ic_launcher_background">#10B981</color>
+    <color name="ic_launcher_background">#44B04A</color>
     <color name="income_green">#00E676</color>
     <color name="purple_light">#FFB300</color>
     <color name="purple_primary">#FF9800</color>
@@ -48,7 +48,7 @@
     <color name="text_white">#FFFFFF</color>
     <color name="warning_amber">#FFBF00</color>
     <color name="white">#FFFFFF</color>
-    <string name="app_name">M-Pesa Tracker</string>
+    <string name="app_name">PesaIQ</string>
     <string name="exclusion_examples">💡 Examples:\n• \"ziidi\" → blocks Ziidi Invest, Ziidi Trader\n• \"international\" → blocks any international transfer\n• \"loan repayment\" → exact match only</string>
     <string name="label_expenditure_breakdown">EXPENDITURE BREAKDOWN</string>
     <string name="label_monthly_trend">MONTHLY TREND</string>

@@ -231,7 +231,6 @@ layout sheet_add_exclusion
 layout sheet_custom_color
 menu bottom_nav_menu
 mipmap ic_launcher
-mipmap ic_launcher_background
 mipmap ic_launcher_foreground
 mipmap ic_launcher_monochrome
 mipmap ic_launcher_round

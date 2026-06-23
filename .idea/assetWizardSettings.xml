@@ -68,7 +68,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="imagePath" value="C:\Users\8Tech\Downloads\logof.png" />
-                                                <entry key="scalingPercent" value="60" />
+                                                <entry key="scalingPercent" value="46" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -92,7 +92,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\8Tech\Downloads\icon1.png" />
+                                                <entry key="imagePath" value="C:\Users\8Tech\Downloads\micon.png" />
+                                                <entry key="scalingPercent" value="77" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -172,7 +173,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundColor" value="10b981" />
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="44b04a" />
                                     </map>
                                   </option>
                                 </PersistentState>

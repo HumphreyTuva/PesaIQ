@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">M-Pesa Tracker</string>
+    <string name="app_name">PesaIQ</string>
     <string name="title_analytics">Analytics</string>
     <string name="label_expenditure_breakdown">EXPENDITURE BREAKDOWN</string>
     <string name="label_monthly_trend">MONTHLY TREND</string>

@@ -118,7 +118,7 @@ fun DashboardScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "M-Tracker",
+                    text = "PesaIQ",
                     color = colorScheme.onBackground,
                     fontSize = 32.sp,
                     fontWeight = FontWeight.ExtraBold
