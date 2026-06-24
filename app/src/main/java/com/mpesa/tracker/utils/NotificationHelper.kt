@@ -40,7 +40,7 @@ object NotificationHelper {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        val emoji = if (transaction.type == TransactionType.RECEIVE) "💰" else "💸"
+        val emoji = if (transaction.type == TransactionType.RECEIVE) "📈" else "📉"
         val title = "$emoji ${transaction.type.label}: ${transaction.formattedAmount()}"
         val text  = when {
             transaction.recipient != null -> "${transaction.type.label} ${if (transaction.type.isExpense) "to" else "from"} ${transaction.recipient}"

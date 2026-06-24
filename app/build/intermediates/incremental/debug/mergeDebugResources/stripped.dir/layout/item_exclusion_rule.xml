@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="4dp"
+    app:cardBackgroundColor="?attr/colorSurface"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="0dp"
+    app:strokeColor="?attr/colorOutlineVariant"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="14dp">
+
+        <!-- Emoji badge -->
+        <TextView
+            android:id="@+id/tv_emoji"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@drawable/item_icon_bg"
+            android:text="🚫"/>
+
+        <!-- Keyword + match type -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="12dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:id="@+id/tv_keyword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"
+                    android:text="m-shwari"/>
+                <TextView
+                    android:id="@+id/tv_preset_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" PRESET"
+                    android:textSize="9sp"
+                    android:textColor="@color/brand_orange"
+                    android:background="@drawable/item_icon_bg"
+                    android:paddingHorizontal="6dp"
+                    android:paddingVertical="2dp"
+                    android:layout_marginStart="6dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_match_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:layout_marginTop="2dp"
+                android:text="contains"/>
+        </LinearLayout>
+
+        <!-- Delete (hidden for presets) -->
+        <ImageButton
+            android:id="@+id/btn_delete"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_delete"
+            app:tint="?attr/colorOnSurfaceVariant"
+            android:contentDescription="Delete rule"
+            android:padding="6dp"
+            android:layout_marginEnd="8dp"/>
+
+        <!-- Toggle switch -->
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_enabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
