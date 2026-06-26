@@ -1,3 +1,0 @@
-com.mpesa.tracker.test
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme

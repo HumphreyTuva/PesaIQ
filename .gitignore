@@ -1,0 +1,39 @@
+# Android Studio
+.idea/
+.gradle/
+local.properties
+
+# Build
+build/
+**/build/
+
+# Gradle
+.cxx/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Kotlin
+*.iml
+# Android Studio
+.idea/
+.gradle/
+local.properties
+
+# Build outputs
+build/
+**/build/
+
+# Kotlin
+*.class
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
